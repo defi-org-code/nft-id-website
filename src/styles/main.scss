@@ -1,0 +1,15 @@
+$secondary-font: "MuseoModerno", cursive;
+$main-font: "Ubuntu", sans-serif;
+
+* {
+  font-family: $main-font;
+}
+.grid {
+  width: 820px;
+}
+
+#WEB3_CONNECT_MODAL_ID {
+  z-index: 111;
+  position: fixed;
+  font-family: $main-font;
+}

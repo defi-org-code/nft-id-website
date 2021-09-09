@@ -1,0 +1,114 @@
+.step-asset {
+  width: 250px;
+  height: 100%;
+
+  &-placeholder {
+    width: 100%;
+    height: 100%;
+    border: 1px dashed #ffffff;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+
+    #placeholder-img {
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  #asset-img {
+    overflow: hidden;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 10;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &-varified {
+    border-radius: 20px;
+    background: linear-gradient(
+      209.49deg,
+      rgba(255, 255, 255, 0) 0.88%,
+      #ffffff 12.86%,
+      #05c200 39.67%,
+      #24acd3 60.6%,
+      #7e3bd0 79.48%,
+      #f0553b 98.88%
+    );
+  }
+}
+
+.varified-asset {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &-figure {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(
+      209.49deg,
+      rgba(255, 255, 255, 0) 0.88%,
+      #ffffff 12.86%,
+      #05c200 39.67%,
+      #24acd3 60.6%,
+      #7e3bd0 79.48%,
+      #f0553b 98.88%
+    );
+    &-big {
+      width: calc(100% + 35px);
+      height: calc(100% + 35px);
+      opacity: 0.2;
+      border-radius: 30px;
+    }
+    &-medium {
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      opacity: 0.3;
+      border-radius: 30px;
+    }
+    &-small {
+      width: calc(100% - 20px);
+      height: calc(100% - 20px);
+      opacity: 1;
+      border-radius: 20px;
+    }
+  }
+  &-logo {
+    position: absolute;
+    z-index: 20;
+    top: -17px;
+    right: -17px;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+  }
+  #asset-img {
+    width: calc(100% - 30px);
+    height: calc(100% - 30px);
+    position: relative;
+    z-index: 10;
+    img {
+      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+}

@@ -1,0 +1,18 @@
+.success {
+  display: flex;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  padding: 10px 15px;
+  align-items: center;
+  img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+  p {
+    color: white;
+    font-family: $main-font;
+    margin-left: 10px;
+    font-weight: 500;
+  }
+}

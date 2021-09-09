@@ -1,0 +1,84 @@
+.button {
+  height: 65px;
+  border-radius: 50px;
+  width: fit-content;
+  position: relative;
+  border: 2px solid white;
+  cursor: pointer;
+  &-with-img {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 10px;
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
+  }
+  &::after {
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translate(-50%);
+    content: "";
+    background: linear-gradient(
+      94.98deg,
+      #05c200 -3.25%,
+      #24acd3 9.98%,
+      #7e3bd0 39.27%,
+      #f0553b 91.59%
+    );
+    filter: blur(21px);
+    width: 80px;
+    height: 61px;
+  }
+  section {
+    position: relative;
+    z-index: 1;
+    border-radius: 50px;
+    padding: 0px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    font-family: $secondary-font;
+  }
+  &-loading {
+    &::after {
+      display: none;
+    }
+    section {
+      color: transparent;
+    }
+    img {
+      opacity: 0;
+    }
+  }
+  &-disabled {
+    border: 2px solid transparent;
+    cursor: not-allowed;
+    &::after {
+      display: none;
+    }
+    section {
+      color: rgba(255, 255, 255, 0.5);
+      background: #1b4156;
+      opacity: 0.5;
+    }
+  }
+  &-active {
+    border: 2px solid transparent;
+    section {
+      background: linear-gradient(
+        94.98deg,
+        #05c200 -3.25%,
+        #24acd3 9.98%,
+        #7e3bd0 39.27%,
+        #f0553b 91.59%
+      );
+    }
+  }
+}
