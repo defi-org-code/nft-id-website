@@ -9,7 +9,13 @@ import TwitterImg from "../assets/images/twitter.svg";
 import TwitterWhiteImg from "../assets/images/twitter-white.svg";
 import VarifiedImg from "../assets/images/varified.svg";
 import VarifiedLogo from "../assets/images/varified-logo.png";
-
+import logo from "../assets/images/home/logo.svg";
+import myNft from "../assets/images/home/my-nft.png";
+import certificate from "../assets/images/home/certificate.png";
+import code from "../assets/images/home/code.png";
+import phone from "../assets/images/home/phone.png";
+import homeBG from "../assets/images/home/bg.svg";
+import verifyCode from "../assets/images/code.png";
 const images = {
   ActiveStepImg,
   SuccessImg,
@@ -22,6 +28,13 @@ const images = {
   TwitterWhiteImg,
   VarifiedImg,
   VarifiedLogo,
+  logo,
+  myNft,
+  certificate,
+  code,
+  phone,
+  homeBG,
+  verifyCode,
 };
 
 export default images;

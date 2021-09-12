@@ -4,12 +4,23 @@ $main-font: "Ubuntu", sans-serif;
 * {
   font-family: $main-font;
 }
+// .grid {
+//   width: 820px;
+//   margin: 0 auto;
+// }
+
 .grid {
-  width: 820px;
+  max-width: 1600px;
+  margin: 0 auto;
+  width: calc(100% - 100px);
 }
 
 #WEB3_CONNECT_MODAL_ID {
   z-index: 111;
   position: fixed;
+  font-family: $main-font;
+}
+
+body {
   font-family: $main-font;
 }

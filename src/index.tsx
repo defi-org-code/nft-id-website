@@ -7,15 +7,13 @@ import { StepsProvider } from "./context/StepsContext";
 import { Web3Provider } from "./context/Web3Context";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Web3Provider>
-      <StepsProvider>
-        <Router>
-          <App />
-        </Router>
-      </StepsProvider>
-    </Web3Provider>
-  </React.StrictMode>,
+  <Web3Provider>
+    <StepsProvider>
+      <Router>
+        <App />
+      </Router>
+    </StepsProvider>
+  </Web3Provider>,
   document.getElementById("root")
 );
 

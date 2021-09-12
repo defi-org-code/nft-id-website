@@ -6,8 +6,8 @@ class Api {
     try {
       const res = await axios.get(`${baseApiUrl}/${url}`);
       return res.data;
-    } catch (error) {
-      return null;
+    } catch (error: any) {
+      throw new Error(error.message);
     }
   }
 
@@ -15,8 +15,8 @@ class Api {
     try {
       const res = await axios.post(`${baseApiUrl}/${url}`, body);
       return res;
-    } catch (error) {
-      return null;
+    } catch (error: any) {
+      throw new Error(error.message);
     }
   }
 }

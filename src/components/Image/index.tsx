@@ -15,7 +15,7 @@ function Image({ src, alt, id = "" }: IProps) {
         src={src}
         alt={alt}
         onLoad={() => setLoaded(true)}
-        className={!loaded ? "image image-loading" : "image"}
+        style={{ opacity: loaded ? 1 : 0 }}
       />
     </div>
   );

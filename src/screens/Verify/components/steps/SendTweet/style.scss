@@ -1,7 +1,22 @@
 .send-tweet {
   padding: 0px;
+  &-not-varified {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
   &-account {
-    text-align: center;
+    flex: 1;
+    background: rgba(196, 196, 196, 0.1);
+    border-radius: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
     img {
       width: 30px;
       height: 30px;
@@ -13,13 +28,14 @@
       color: white;
       font-family: $main-font;
     }
-    margin-bottom: 40px;
   }
   &-pending {
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
+    width: 100%;
+    justify-content: center;
     p {
       color: white;
       padding: 15px;
@@ -36,6 +52,8 @@
     flex-direction: column;
     font-family: $main-font;
     color: white;
+    position: absolute;
+    top: 0px;
     &-content {
       padding: 20px 30px 30px 30px;
       display: flex;

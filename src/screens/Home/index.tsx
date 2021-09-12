@@ -1,32 +1,41 @@
-import { steps } from "../../consts";
+import React from "react";
+import Button from "../../components/Button";
+import Image from "../../components/Image";
 import images from "../../consts/images";
-import { useSteps } from "../../context/StepsContext";
-import { IStep } from "../../types";
-import Navigation from "./components/Navigation";
-import StepsProgress from "./components/StepsProgress";
+import { useHistory } from "react-router-dom";
+import { routes } from "../../consts";
+const Bounce = require("react-reveal/Bounce");
 
 function Home() {
-  const store = useSteps();
-  const { currentStep, allowNextStep } = store;
+  const history = useHistory();
   return (
     <div className="home">
-      <div className="home-overlay"></div>
-      <img src={images.StepsBg} alt="background" className="home-bg" />
-      <div className="home-content">
-        <StepsProgress steps={steps} />
-        {steps.map((step: IStep, index) => {
-          const { component: Component, title } = step;
-          if (index === currentStep) {
-            return (
-              <div className="step" key={index}>
-                <h3 className="step-title">{title}</h3>
-                <Component />
-              </div>
-            );
-          }
-          return null;
-        })}
-        <Navigation />
+      <img src={images.homeBG} alt="background" className="home-bg" />
+      <img src={images.logo} alt="logo" className="home-logo" />
+      <div className="home-flex">
+        <Bounce left>
+          <div className="home-left">
+            <img src={images.myNft} alt="my nft" />
+            <h5>You own an NFT ?</h5>
+            <h3>Prove it !</h3>
+            <Button
+              content={<p>Verify your asset now</p>}
+              onClick={() => history.push(routes.verify)}
+              active={true}
+            />
+          </div>
+        </Bounce>
+        <Bounce right>
+          <div className="home-right">
+            <Image src={images.code} alt="code" id="code" />
+            <Image src={images.phone} alt="phone" id="phone" />
+            <Image
+              src={images.certificate}
+              alt="certificate"
+              id="certificate"
+            />
+          </div>
+        </Bounce>
       </div>
     </div>
   );

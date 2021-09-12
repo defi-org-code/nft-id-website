@@ -36,7 +36,7 @@ const StepsProvider = ({ children }: IProps) => {
   const [owner, setOwner] = useState<string>("");
   const [signature, setSignature] = useState<string>("");
   const [signData, setSignData] = useState<string>("");
-  const [allowNextStep, setAllowNextStep] = useState<boolean>(false);
+  const [allowNextStep, setAllowNextStep] = useState<boolean>(true);
   const [twitterHandle, setTwitterHandle] = useState<string>("");
   const [varification, setVarification] = useState<string>("");
   const [varificationPending, setVarificationPending] = useState<boolean>(

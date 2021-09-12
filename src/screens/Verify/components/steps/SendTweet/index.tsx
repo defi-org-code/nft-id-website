@@ -1,10 +1,12 @@
-import { useEffect, useRef } from "react";
-import Button from "../../../../components/Button";
-import images from "../../../../consts/images";
-import { useSteps } from "../../../../context/StepsContext";
-import api from "../../../../services/api";
-import AssetAvatar from "../AssetAvatar";
+import { useEffect, useRef, useState } from "react";
+import Button from "../../../../../components/Button";
+import images from "../../../../../consts/images";
+import { useSteps } from "../../../../../context/StepsContext";
+import api from "../../../../../services/api";
+import AssetAvatar from "../../AssetAvatar";
 import Varified from "./Varified";
+const Bounce = require("react-reveal/Bounce");
+const Fade = require("react-reveal/Fade");
 
 function SendTweet() {
   const {
@@ -17,7 +19,7 @@ function SendTweet() {
     setAllowNextStep,
   } = useSteps();
   const pollInterval = useRef<any>(null);
-
+  const [error, setError] = useState(false);
   const onClick = () => {
     const params = encodeURIComponent(
       `I’m verifying that I own ${openSeaUrl} #nftidverify`
@@ -29,12 +31,16 @@ function SendTweet() {
 
   const fecthVerificationRequest = async () => {
     const url = `fetchVerifiedRequest?openseaUrl=${openSeaUrl}`;
-    const res = await api.get(url);
-
-    if (res) {
-      setVarificationPending(false);
-      setVarification(res);
-      window.clearInterval(pollInterval.current);
+    setError(false);
+    try {
+      const res = await api.get(url);
+      if (res) {
+        setVarificationPending(false);
+        setVarification(res);
+        window.clearInterval(pollInterval.current);
+      }
+    } catch (error) {
+      setError(true);
     }
   };
 
@@ -47,13 +53,12 @@ function SendTweet() {
   useEffect(() => {
     setAllowNextStep(!!varification);
   }, [setAllowNextStep, varification]);
-
   return (
-    <div className="step-flex send-tweet">
-      <AssetAvatar varified={!!varification} />
+    <Bounce right>
+      <div className="step send-tweet">
+        <AssetAvatar varified={!!varification} />
 
-      <div className="step-content">
-        {!varification ? (
+        <div className="step-content">
           <div className="send-tweet-not-varified">
             <div className="send-tweet-account">
               <img src={images.TwitterImg} alt="twitter" />
@@ -71,17 +76,18 @@ function SendTweet() {
                 }
               />
             ) : (
-              <div className="send-tweet-pending">
-                <img src="" alt="" />
-                <p>Waiting to verify tweet (about 1-2 minutes)...</p>
-              </div>
+              <Fade>
+                <div className="send-tweet-pending">
+                  <img src="" alt="" />
+                  <p>Waiting to verify tweet (about 1-2 minutes)...</p>
+                </div>
+              </Fade>
             )}
           </div>
-        ) : (
-          <Varified />
-        )}
+          {varification && <Varified />}
+        </div>
       </div>
-    </div>
+    </Bounce>
   );
 }
 
