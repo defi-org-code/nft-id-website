@@ -21,6 +21,7 @@ const createPendingRequest = async (
     json: signData,
     openseaUrl,
   };
+  console.log(body);
   const name = await api.post(url, body);
   console.log({ name });
   return name;
@@ -43,14 +44,14 @@ function Ownership() {
   const [isLoading, setIsLoading] = useState(false);
   const sign = async (twitterHandle: string) => {
     if (!web3) return;
-    const messageToSign = `{"twitterHandle":"${twitterHandle}"}`;
+    const messageToSign = {"twitterHandle":twitterHandle};
     const signData = JSON.stringify(messageToSign);
     setSignData(signData);
     setError(false);
     try {
       setIsLoading(true);
       const res = await web3.eth.personal.sign(signData, account, "");
-      // await createPendingRequest(res, signData, openSeaUrl);
+      await createPendingRequest(res, signData, openSeaUrl);
       setSignature(res);
     } catch (error) {
       console.log(error);

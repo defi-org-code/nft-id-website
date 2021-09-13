@@ -17,10 +17,10 @@ interface IStepsContext {
   setAllowNextStep: (val: boolean) => void;
   twitterHandle: string;
   setTwitterHandle: (val: string) => void;
-  varification: string;
-  setVarification: (val: string) => void;
-  varificationPending: boolean;
-  setVarificationPending: (val: boolean) => void;
+  verification: string;
+  setVerification: (val: string) => void;
+  verificationPending: boolean;
+  setVerificationPending: (val: boolean) => void;
 }
 
 interface IProps {
@@ -38,8 +38,8 @@ const StepsProvider = ({ children }: IProps) => {
   const [signData, setSignData] = useState<string>("");
   const [allowNextStep, setAllowNextStep] = useState<boolean>(true);
   const [twitterHandle, setTwitterHandle] = useState<string>("");
-  const [varification, setVarification] = useState<string>("");
-  const [varificationPending, setVarificationPending] = useState<boolean>(
+  const [verification, setVerification] = useState<string>("");
+  const [verificationPending, setVerificationPending] = useState<boolean>(
     false
   );
 
@@ -60,10 +60,10 @@ const StepsProvider = ({ children }: IProps) => {
     setAllowNextStep,
     twitterHandle,
     setTwitterHandle,
-    varification,
-    setVarification,
-    varificationPending,
-    setVarificationPending,
+    verification: verification,
+    setVerification: setVerification,
+    verificationPending: verificationPending,
+    setVerificationPending: setVerificationPending,
   };
 
   return (

@@ -12,31 +12,31 @@ function SendTweet() {
   const {
     openSeaUrl,
     twitterHandle,
-    setVarification,
-    varification,
-    varificationPending,
-    setVarificationPending,
+    setVerification,
+    verification,
+    verificationPending,
+    setVerificationPending,
     setAllowNextStep,
   } = useSteps();
   const pollInterval = useRef<any>(null);
   const [error, setError] = useState(false);
   const onClick = () => {
     const params = encodeURIComponent(
-      `I’m verifying that I own ${openSeaUrl} #nftidverify`
+      `I’m verifying that I own ${openSeaUrl}\n Check out my certificate of ownership on @mynft_fyi https://mynft.fyi/${twitterHandle} #mynftfyi`
     );
     window.open(`https://twitter.com/intent/tweet?text=${params}`);
-    setVarificationPending(true);
+    setVerificationPending(true);
     handlePoll();
   };
 
-  const fecthVerificationRequest = async () => {
-    const url = `fetchVerifiedRequest?openseaUrl=${openSeaUrl}`;
+  const fetchVerificationRequest = async () => {
+    const url = `fetchVerifiedRequest?url=${openSeaUrl}`;
     setError(false);
     try {
       const res = await api.get(url);
       if (res) {
-        setVarificationPending(false);
-        setVarification(res);
+        setVerificationPending(false);
+        setVerification(res);
         window.clearInterval(pollInterval.current);
       }
     } catch (error) {
@@ -46,17 +46,17 @@ function SendTweet() {
 
   const handlePoll = () => {
     pollInterval.current = setInterval(() => {
-      fecthVerificationRequest();
+      fetchVerificationRequest().then();
     }, 5000);
   };
 
   useEffect(() => {
-    setAllowNextStep(!!varification);
-  }, [setAllowNextStep, varification]);
+    setAllowNextStep(!!verification);
+  }, [setAllowNextStep, verification]);
   return (
     <Bounce right>
       <div className="step send-tweet">
-        <AssetAvatar varified={!!varification} />
+        <AssetAvatar varified={!!verification} />
 
         <div className="step-content">
           <div className="send-tweet-not-varified">
@@ -64,7 +64,7 @@ function SendTweet() {
               <img src={images.TwitterImg} alt="twitter" />
               <h4>{twitterHandle}</h4>
             </div>
-            {!varificationPending ? (
+            {!verificationPending ? (
               <Button
                 onClick={onClick}
                 active={true}
@@ -84,7 +84,7 @@ function SendTweet() {
               </Fade>
             )}
           </div>
-          {varification && <Varified />}
+          {verification && <Varified />}
         </div>
       </div>
     </Bounce>
