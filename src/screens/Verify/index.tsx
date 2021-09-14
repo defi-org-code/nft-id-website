@@ -1,4 +1,3 @@
-import { useState } from "react";
 import images from "../../consts/images";
 import { useSteps } from "../../context/StepsContext";
 import { IStep } from "../../types";

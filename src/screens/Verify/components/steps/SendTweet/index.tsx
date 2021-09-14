@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Animation from "../../../../../components/Animation";
 import Button from "../../../../../components/Button";
 import TwitterAccount from "../../../../../components/TwitterAccount";
@@ -24,7 +24,6 @@ function SendTweet() {
     name,
   } = useSteps();
   const pollInterval = useRef<any>(null);
-  const [error, setError] = useState(false);
   const onClick = () => {
     const params = encodeURIComponent(
       `I’m verifying that I own ${openSeaUrl}\n Check out my certificate of ownership on @mynft_fyi https://mynft.fyi/${twitterHandle} #mynftfyi`
@@ -36,7 +35,6 @@ function SendTweet() {
 
   const fetchVerificationRequest = async () => {
     const url = `fetchVerifiedRequest?url=${openSeaUrl}`;
-    setError(false);
     try {
       const res = await api.get(url);
       if (res && res.verified_time) {
@@ -45,9 +43,7 @@ function SendTweet() {
         setCertificate(res);
         window.clearInterval(pollInterval.current);
       }
-    } catch (error) {
-      setError(true);
-    }
+    } catch (error) {}
   };
 
   const handlePoll = () => {

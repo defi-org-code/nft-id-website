@@ -5,7 +5,6 @@ import Home from "./screens/Home";
 import Asset from "./screens/Asset";
 import Verify from "./screens/Verify";
 import { routes } from "./consts";
-import Message from "./components/Message";
 
 function App() {
   return (

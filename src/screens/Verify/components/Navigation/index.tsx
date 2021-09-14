@@ -9,9 +9,13 @@ function Navigation() {
 
   const isLastStep = steps.length - 1 === currentStep;
   const isFirstStep = currentStep === 0;
-  const next = () => {
+
+  const onClick = () => {
     if (disabled) {
       return;
+    }
+    if (isLastStep) {
+      return setDone(true);
     }
     if (currentStep < steps.length - 1) {
       setCurrectStep(currentStep + 1);
@@ -22,7 +26,7 @@ function Navigation() {
     <Bounce bottom>
       <div className="steps-navigation">
         <Button
-          onClick={isLastStep ? () => setDone(true) : next}
+          onClick={onClick}
           content={<>{isLastStep ? "Done" : isFirstStep ? "Start" : "Next"}</>}
           disabled={disabled}
           active={!disabled}

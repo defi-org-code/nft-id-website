@@ -1,7 +1,6 @@
 import Animation from "../../../../components/Animation";
 import Image from "../../../../components/Image";
 import animations from "../../../../consts/animations";
-import images from "../../../../consts/images";
 import { useSteps } from "../../../../context/StepsContext";
 
 function VerifiedAsset() {

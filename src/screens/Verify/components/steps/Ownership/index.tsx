@@ -9,7 +9,6 @@ import AssetAvatar from "../../AssetAvatar";
 import Error from "../../Error";
 import TwitterAccount from "../../../../../components/TwitterAccount";
 const Bounce = require("react-reveal/Bounce");
-const Fade = require("react-reveal/Fade");
 
 const createPendingRequest = async (
   signature: string,

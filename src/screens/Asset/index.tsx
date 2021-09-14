@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { useParams, useLocation, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import api from "../../services/api";
 import Actions from "./Actions";
@@ -18,7 +19,6 @@ interface IParams {
 function Asset() {
   const history = useHistory();
   const { tokenId, contractAddress, twitterHandle }: IParams = useParams();
-  const [error, setError] = useState<boolean>(false);
   const [fetchingAsset, setFetchingAsset] = useState(false);
   const [fetchingAssetDone, setFetchingAssetDone] = useState(false);
   const [fetchingOwner, setFetchingOwner] = useState(false);
@@ -61,6 +61,7 @@ function Asset() {
     }, 4000);
     setInterval(() => {
       setFetchingTweet(true);
+      setFetchingTweetDone(true);
     }, 5000);
   };
 
@@ -76,11 +77,9 @@ function Asset() {
 
   const getOwnershipDetails = async (url: string) => {
     try {
-      setError(false);
       const res = await api.get(url);
       handleResult(res);
     } catch (error) {
-      setError(true);
     } finally {
       setIsLoading(false);
     }

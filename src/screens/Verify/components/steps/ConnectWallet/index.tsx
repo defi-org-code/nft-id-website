@@ -8,7 +8,6 @@ import { useWeb3 } from "../../../../../context/Web3Context";
 import { makeElipsisAddress } from "../../../../../utils/string";
 import AssetAvatar from "../../AssetAvatar";
 const Bounce = require("react-reveal/Bounce");
-const Fade = require("react-reveal/Fade");
 
 const checkIfOwner = (account: string, owner: string) => {
   if (!account || !owner) return false;
