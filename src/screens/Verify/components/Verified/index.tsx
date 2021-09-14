@@ -35,7 +35,7 @@ function Verified() {
                 urlParams={`${certificate.nft_contract_address}/${certificate.nft_id}`}
                 value={`${makeElipsisAddress(
                   certificate.nft_contract_address,
-                  14
+                  10
                 )}/${certificate.nft_id}`}
               />
             </div>

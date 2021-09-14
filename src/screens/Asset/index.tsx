@@ -19,51 +19,12 @@ interface IParams {
 function Asset() {
   const history = useHistory();
   const { tokenId, contractAddress, twitterHandle }: IParams = useParams();
-  const [fetchingAsset, setFetchingAsset] = useState(false);
-  const [fetchingAssetDone, setFetchingAssetDone] = useState(false);
-  const [fetchingOwner, setFetchingOwner] = useState(false);
-  const [fetchingOwnerDone, setFetchingOwnerDone] = useState(false);
-
-  const [fetcingSignature, setFetcingSignature] = useState(false);
-  const [fetcingSignatureDone, setFetcingSignatureDone] = useState(false);
-
-  const [verifyingSignature, setVerifyingSignature] = useState(false);
-  const [verifyingSignatureDone, setVerifyingSignatureDone] = useState(false);
-
-  const [fetchingTweet, setFetchingTweet] = useState(false);
-  const [fetchingTweetDone, setFetchingTweetDone] = useState(false);
 
   const [isLoading, setIsLoading] = useState(true);
   const [certificate, setCertificate] = useState<ICertificate | null>(null);
   useEffect(() => {
     handleOnLoad();
-    stateMachine();
   }, []);
-
-  const stateMachine = () => {
-    setFetchingAsset(true);
-    setInterval(() => {
-      setFetchingAssetDone(true);
-      setFetchingOwner(true);
-    }, 1000);
-    setInterval(() => {
-      setFetchingOwnerDone(true);
-      setFetcingSignature(true);
-    }, 2000);
-
-    setInterval(() => {
-      setFetcingSignatureDone(true);
-      setVerifyingSignature(true);
-    }, 3000);
-
-    setInterval(() => {
-      setVerifyingSignatureDone(true);
-    }, 4000);
-    setInterval(() => {
-      setFetchingTweet(true);
-      setFetchingTweetDone(true);
-    }, 5000);
-  };
 
   const handleOnLoad = () => {
     let url = "";
@@ -101,19 +62,7 @@ function Asset() {
         ) : certificate ? (
           <>
             <Cretificate data={certificate} />
-            <Actions
-              twitterHanlde={certificate.twitter_handle}
-              fetchingAsset={fetchingAsset}
-              fetchingOwner={fetchingOwner}
-              fetcingSignature={fetcingSignature}
-              verifyingSignature={verifyingSignature}
-              fetchingTweet={fetchingTweet}
-              fetchingAssetDone={fetchingAssetDone}
-              fetchingOwnerDone={fetchingOwnerDone}
-              fetcingSignatureDone={fetcingSignatureDone}
-              verifyingSignatureDone={verifyingSignatureDone}
-              fetchingTweetDone={fetchingTweetDone}
-            />
+            <Actions certificate={certificate} />
           </>
         ) : (
           <img

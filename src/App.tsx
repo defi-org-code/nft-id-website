@@ -5,7 +5,9 @@ import Home from "./screens/Home";
 import Asset from "./screens/Asset";
 import Verify from "./screens/Verify";
 import { routes } from "./consts";
+import analytics from "./services/analytics";
 
+analytics.init();
 function App() {
   return (
     <div className="App">

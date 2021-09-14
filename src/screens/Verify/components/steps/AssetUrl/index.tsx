@@ -63,7 +63,7 @@ function AssetUrl() {
             onChange={onChange}
             disabled={!!owner}
             value={openSeaUrl}
-            placeholder="URL"
+            placeholder="https://opensea.io/assets/0xbd3531da5cf5857e7cfaa92426877b022e612cf8/5222"
           />
           <Button
             onClick={fetchNftAsset}

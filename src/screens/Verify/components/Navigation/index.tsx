@@ -1,5 +1,6 @@
 import Button from "../../../../components/Button";
 import { useSteps } from "../../../../context/StepsContext";
+import analytics from "../../../../services/analytics";
 import { steps } from "../../Data";
 const Bounce = require("react-reveal/Bounce");
 
@@ -15,6 +16,7 @@ function Navigation() {
       return;
     }
     if (isLastStep) {
+      analytics.sendEvent("TAP_ON_DONE_AFTER_VERIFY");
       return setDone(true);
     }
     if (currentStep < steps.length - 1) {

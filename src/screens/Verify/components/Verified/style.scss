@@ -1,6 +1,8 @@
 .verified {
   justify-content: space-between;
   display: flex;
+  overflow: hidden;
+  padding-bottom: 50px;
   &-left {
     width: 590px;
     .certificate {
@@ -207,6 +209,29 @@
       }
       &::after {
         height: 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .verified {
+    &-proof {
+      margin-top: 50px;
+    }
+    &-left {
+      width: 530px;
+      .certificate {
+        height: 580px;
+        zoom: 0.5;
+      }
+    }
+    &-right {
+      &-bottom {
+        height: 280px;
+      }
+      &-arrow {
+        top: 55%;
       }
     }
   }

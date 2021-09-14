@@ -21,7 +21,7 @@ function Url({ value, urlParams }: IProps) {
   return (
     <Fade bottom>
       <div className="verified-url">
-        <a href="/">
+        <a rel="noreferrer" target="_blank" href={`https://mynft.fyi/${value}`}>
           <img src={images.url} alt="url" />
           {`https://mynft.fyi/${value}`}
         </a>

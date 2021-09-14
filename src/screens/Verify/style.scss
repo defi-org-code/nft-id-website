@@ -95,6 +95,20 @@
       font-family: $main-font;
       color: white;
       margin-bottom: 30px;
+      @extend .overflow-text;
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .steps-navigation {
+    margin-top: 50px;
+  }
+  .verify {
+    .step-container {
+      &-subtitle {
+        margin-bottom: 50px;
+      }
     }
   }
 }

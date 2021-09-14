@@ -25,3 +25,9 @@ $code: "Source Code Pro", monospace;
 body {
   font-family: $main-font;
 }
+
+.overflow-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

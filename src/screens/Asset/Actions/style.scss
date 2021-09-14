@@ -34,14 +34,21 @@
         margin-bottom: 0px;
       }
     }
+    .asset-yellow,
+    a {
+      color: #05c200;
+      text-decoration: none;
+    }
+    strong {
+      color: #c20000;
+    }
     p {
       font-size: 16px;
       font-weight: 500;
       line-height: 20.11px;
       font-family: $code;
       span {
-        color: #05c200;
-        margin-left: 5px;
+        color: white;
       }
     }
   }
