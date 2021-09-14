@@ -26,6 +26,7 @@ import twitterBg from "../assets/images/verify/twitter-bg.png";
 import phoneStatusBar from "../assets/images/verify/phone-status-bar.svg";
 import arrow from "../assets/images/verify/arrow.svg";
 import emptyCertificate from "../assets/images/empty-certificate.png";
+import line from "../assets/images/line.svg";
 
 const images = {
   ActiveStepImg,
@@ -56,6 +57,7 @@ const images = {
   phoneStatusBar,
   arrow,
   emptyCertificate,
+  line,
 };
 
 export default images;

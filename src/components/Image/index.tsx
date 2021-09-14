@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Spinner from "../Spinner";
 
 interface IProps {
   src: string;
@@ -10,7 +11,11 @@ function Image({ src, alt, id = "" }: IProps) {
   const [loaded, setLoaded] = useState(false);
   return (
     <div className="image" id={id}>
-      {!loaded && <figure className="image-loader" />}
+      {!loaded && (
+        <figure className="image-loader">
+          <Spinner />
+        </figure>
+      )}
       <img
         src={src}
         alt={alt}

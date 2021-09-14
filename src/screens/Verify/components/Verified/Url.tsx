@@ -7,12 +7,12 @@ const Fade = require("react-reveal/Fade");
 
 interface IProps {
   value: string;
+  urlParams: string;
 }
 
-function Url({ value }: IProps) {
+function Url({ value, urlParams }: IProps) {
   const [copied, setCopied] = useState(false);
 
-  const url = `https://mynft.fyi/${value}`;
   const copy = async () => {
     setCopied(true);
     await delay(2000);
@@ -23,9 +23,12 @@ function Url({ value }: IProps) {
       <div className="verified-url">
         <a href="/">
           <img src={images.url} alt="url" />
-          {url}
+          {`https://mynft.fyi/${value}`}
         </a>
-        <CopyToClipboard text={url} onCopy={() => {}}>
+        <CopyToClipboard
+          text={`https://mynft.fyi/${urlParams}`}
+          onCopy={() => {}}
+        >
           <Button
             onClick={copy}
             content={

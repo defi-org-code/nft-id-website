@@ -7,6 +7,12 @@ interface IProps {
   fetcingSignature: boolean;
   verifyingSignature: boolean;
   fetchingTweet: boolean;
+  fetchingAssetDone: boolean;
+  fetchingOwnerDone: boolean;
+  fetcingSignatureDone: boolean;
+  verifyingSignatureDone: boolean;
+  fetchingTweetDone: boolean;
+  twitterHanlde: string;
 }
 
 function Actions({
@@ -15,6 +21,12 @@ function Actions({
   fetcingSignature,
   verifyingSignature,
   fetchingTweet,
+  fetchingAssetDone,
+  fetchingOwnerDone,
+  fetcingSignatureDone,
+  verifyingSignatureDone,
+  fetchingTweetDone,
+  twitterHanlde,
 }: IProps) {
   return (
     <div className="asset-proof">
@@ -30,12 +42,14 @@ function Actions({
             <Fade>
               <section className="asset-proof-fetching-asset">
                 <p>Fetching asset...</p>
-                <p>
-                  Asset
-                  <span>
-                    https://opensea.io/assets/0x05a46f1e545526fb803ff974c790acea34d1f2d6/5021
-                  </span>
-                </p>
+                {fetchingAssetDone && (
+                  <p>
+                    Asset
+                    <span>
+                      https://opensea.io/assets/0x05a46f1e545526fb803ff974c790acea34d1f2d6/5021
+                    </span>
+                  </p>
+                )}
               </section>
             </Fade>
           )}
@@ -43,14 +57,16 @@ function Actions({
             <Fade>
               <section className="asset-proof-fetching-owner">
                 <p>Fetching Owner...</p>
-                <p>
-                  Owner
-                  <span>
-                    https://etherscan.io/address/0xc81bd599a66da6dcc3a64399f8025c19ffc42888
-                  </span>
-                  <br />
-                  Tweet handle proof:
-                </p>
+                {fetchingOwnerDone && (
+                  <p>
+                    Owner
+                    <span>
+                      https://etherscan.io/address/0xc81bd599a66da6dcc3a64399f8025c19ffc42888
+                    </span>
+                    <br />
+                    Tweet handle proof: {`TwitterHandle: ${twitterHanlde}`}
+                  </p>
+                )}
               </section>
             </Fade>
           )}
@@ -58,12 +74,14 @@ function Actions({
             <Fade>
               <section className="asset-proof-fetching-signature">
                 <p>fetching siganture...</p>
-                <p>
-                  Signature:
-                  <span>
-                    0x0839a5a7b34497bf72a92d215e3d243fba638c0012f20c44b6d41c28a4c8f81...
-                  </span>
-                </p>
+                {fetcingSignatureDone && (
+                  <p>
+                    Signature:
+                    <span>
+                      0x0839a5a7b34497bf72a92d215e3d243fba638c0012f20c44b6d41c28a4c8f81...
+                    </span>
+                  </p>
+                )}
               </section>
             </Fade>
           )}
@@ -72,8 +90,12 @@ function Actions({
               <section className="asset-proof-fetching-verifying">
                 <p>
                   Verifiying siganture...
-                  <br />
-                  <span>☑ Verified</span>
+                  {verifyingSignatureDone && (
+                    <>
+                      <br />
+                      <span>☑ Verified</span>
+                    </>
+                  )}
                 </p>
               </section>
             </Fade>

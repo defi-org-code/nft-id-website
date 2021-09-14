@@ -1,17 +1,20 @@
 import Certificate from "../../../../components/Certificate/index";
 import Image from "../../../../components/Image";
 import images from "../../../../consts/images";
+import { useSteps } from "../../../../context/StepsContext";
+import { makeElipsisAddress } from "../../../../utils/string";
 import Url from "./Url";
 const Bounce = require("react-reveal/Bounce");
 const Fade = require("react-reveal/Fade");
 
 function Verified() {
-  return (
+  const { certificate } = useSteps();
+  return certificate ? (
     <Bounce right>
       <div className="verified">
         <div className="verified-left">
           <Fade>
-            <Certificate />
+            <Certificate data={certificate} />
           </Fade>
           <div className="verified-proof">
             <Fade bottom>
@@ -24,8 +27,17 @@ function Verified() {
               <h5>put one of them in your Twitter Bio:</h5>
             </Fade>
             <div className="verified-proof-urls">
-              <Url value="StephenCurry30" />
-              <Url value="0x321465465df5d4543456a2345ad4s/3235" />
+              <Url
+                urlParams={certificate.twitter_handle}
+                value={certificate.twitter_handle}
+              />
+              <Url
+                urlParams={`${certificate.nft_contract_address}/${certificate.nft_id}`}
+                value={`${makeElipsisAddress(
+                  certificate.nft_contract_address,
+                  14
+                )}/${certificate.nft_id}`}
+              />
             </div>
           </div>
         </div>
@@ -37,30 +49,48 @@ function Verified() {
               className="verified-right-arrow"
             />
             <div className="verified-twitter">
-              <div className="verified-twitter-bg">
+              <div
+                className="verified-twitter-bg"
+                style={{
+                  background:
+                    certificate.twitter_user_info.profile_background_color,
+                }}
+              >
                 <img
                   className="verified-twitter-bg-status-bar"
                   src={images.phoneStatusBar}
                   alt="status-bar"
                 />
-                <Image src={images.twitterBg} alt="background" />
+                {certificate.twitter_user_info.profile_banner_url && (
+                  <Image
+                    src={certificate.twitter_user_info.profile_banner_url}
+                    alt="background"
+                  />
+                )}
               </div>
 
               <Image
                 id="verified-twitter-asset"
-                src={images.monkey}
+                src={certificate.nft_image}
                 alt="profile"
               />
 
               <Fade bottom>
-                <button className="verified-twitter-follow">Follow</button>
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href={`https://twitter.com/${certificate.twitter_handle}`}
+                  className="verified-twitter-follow"
+                >
+                  Follow
+                </a>
               </Fade>
 
               <section className="verified-twitter-info">
                 <Fade bottom delay={200}>
                   <>
-                    <h3>Stephen Curry</h3>
-                    <p>@StephenCurry30</p>
+                    <h3>{certificate.twitter_user_info.name}</h3>
+                    <p>@{certificate.twitter_handle}</p>
                   </>
                 </Fade>
 
@@ -69,10 +99,10 @@ function Verified() {
                     <h5>Yes it’s my NFT :</h5>
                     <a
                       target="_blank"
-                      href="https://mynft.fyi/StephenCurry30"
+                      href={`https://mynft.fyi/${certificate.twitter_handle}`}
                       rel="noreferrer"
                     >
-                      https://mynft.fyi/StephenCurry30
+                      {`https://mynft.fyi/${certificate.twitter_handle}`}
                     </a>
                   </>
                 </Fade>
@@ -90,7 +120,7 @@ function Verified() {
         </Fade>
       </div>
     </Bounce>
-  );
+  ) : null;
 }
 
 export default Verified;

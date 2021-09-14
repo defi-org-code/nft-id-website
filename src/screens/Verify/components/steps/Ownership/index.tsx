@@ -65,6 +65,8 @@ function Ownership() {
       if (submitContainerRef && submitContainerRef.current)
         submitContainerRef.current.style.opacity = "0";
       setAllowNextStep(true);
+    } else {
+      setAllowNextStep(false);
     }
   }, [setAllowNextStep, signature]);
 

@@ -16,8 +16,8 @@ function SendTweet() {
   const {
     openSeaUrl,
     twitterHandle,
-    setVerification,
-    verification,
+    certificate,
+    setCertificate,
     verificationPending,
     setVerificationPending,
     setAllowNextStep,
@@ -41,7 +41,8 @@ function SendTweet() {
       const res = await api.get(url);
       if (res && res.verified_time) {
         setVerificationPending(false);
-        setVerification(res);
+        res.twitter_user_info = JSON.parse(res.twitter_user_info);
+        setCertificate(res);
         window.clearInterval(pollInterval.current);
       }
     } catch (error) {
@@ -56,16 +57,16 @@ function SendTweet() {
   };
 
   useEffect(() => {
-    setAllowNextStep(!!verification);
-  }, [setAllowNextStep, verification]);
+    setAllowNextStep(!!certificate);
+  }, [setAllowNextStep, certificate]);
 
   return (
     <Bounce right>
       <div className="step send-tweet">
-        {verification ? <VerifiedAsset /> : <AssetAvatar />}
+        {certificate ? <VerifiedAsset /> : <AssetAvatar />}
 
         <div className="step-content">
-          {!verification ? (
+          {!certificate ? (
             <div className="send-tweet-not-varified">
               <TwitterAccount twitterHandle={twitterHandle} name={name} />
               {!verificationPending ? (

@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from "react";
+import { ICertificate } from "../../types";
 
 interface IStepsContext {
   currentStep: number;
@@ -17,8 +18,8 @@ interface IStepsContext {
   setAllowNextStep: (val: boolean) => void;
   twitterHandle: string;
   setTwitterHandle: (val: string) => void;
-  verification: string;
-  setVerification: (val: string) => void;
+  certificate: ICertificate | null;
+  setCertificate: (val: ICertificate | null) => void;
   verificationPending: boolean;
   setVerificationPending: (val: boolean) => void;
   name: string;
@@ -42,7 +43,7 @@ const StepsProvider = ({ children }: IProps) => {
   const [signData, setSignData] = useState<string>("");
   const [allowNextStep, setAllowNextStep] = useState<boolean>(true);
   const [twitterHandle, setTwitterHandle] = useState<string>("");
-  const [verification, setVerification] = useState<string>("");
+  const [certificate, setCertificate] = useState<ICertificate | null>(null);
   const [name, setName] = useState<string>("");
   const [done, setDone] = useState<boolean>(false);
 
@@ -67,8 +68,8 @@ const StepsProvider = ({ children }: IProps) => {
     setAllowNextStep,
     twitterHandle,
     setTwitterHandle,
-    verification,
-    setVerification,
+    certificate,
+    setCertificate,
     verificationPending,
     setVerificationPending,
     name,

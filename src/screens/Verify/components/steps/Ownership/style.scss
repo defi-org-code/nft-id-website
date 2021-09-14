@@ -15,13 +15,11 @@
     flex-direction: column;
     align-items: center;
     position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    transform-origin: center;
+    left: 0px;
     top: 0px;
     width: 100%;
     z-index: 10;
-    transition: 0.2s all;
+
     pointer-events: none;
     height: 100%;
     .twitter-account {

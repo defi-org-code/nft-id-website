@@ -5,8 +5,7 @@ const Bounce = require("react-reveal/Bounce");
 
 function Navigation() {
   const { setCurrectStep, currentStep, allowNextStep, setDone } = useSteps();
-  // const disabled = !allowNextStep;
-  const disabled = false;
+  const disabled = !allowNextStep;
 
   const isLastStep = steps.length - 1 === currentStep;
   const isFirstStep = currentStep === 0;
