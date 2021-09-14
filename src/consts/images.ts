@@ -10,7 +10,7 @@ import TwitterWhiteImg from "../assets/images/twitter-white.svg";
 import VarifiedImg from "../assets/images/varified.svg";
 import VarifiedLogo from "../assets/images/varified-logo.png";
 import logo from "../assets/images/home/logo.svg";
-import myNft from "../assets/images/home/my-nft.png";
+import title from "../assets/images/home/title.svg";
 import certificate from "../assets/images/home/certificate.png";
 import code from "../assets/images/home/code.png";
 import phone from "../assets/images/home/phone.png";
@@ -21,6 +21,11 @@ import codeframe from "../assets/images/asset/code.png";
 import homeImages from "../assets/images/home/images.png";
 import url from "../assets/images/url.svg";
 import copy from "../assets/images/copy.svg";
+import phoneFrame from "../assets/images/verify/phone-frame.png";
+import twitterBg from "../assets/images/verify/twitter-bg.png";
+import phoneStatusBar from "../assets/images/verify/phone-status-bar.svg";
+import arrow from "../assets/images/verify/arrow.svg";
+import emptyCertificate from "../assets/images/empty-certificate.png";
 
 const images = {
   ActiveStepImg,
@@ -35,7 +40,7 @@ const images = {
   VarifiedImg,
   VarifiedLogo,
   logo,
-  myNft,
+  title,
   certificate,
   code,
   phone,
@@ -46,6 +51,11 @@ const images = {
   homeImages,
   url,
   copy,
+  phoneFrame,
+  twitterBg,
+  phoneStatusBar,
+  arrow,
+  emptyCertificate,
 };
 
 export default images;

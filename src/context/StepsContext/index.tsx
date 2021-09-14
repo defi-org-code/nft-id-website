@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 
 interface IStepsContext {
   currentStep: number;
@@ -28,7 +28,7 @@ interface IStepsContext {
 }
 
 interface IProps {
-  children: any;
+  children: ReactNode;
 }
 
 const StepsContext = createContext({} as IStepsContext);

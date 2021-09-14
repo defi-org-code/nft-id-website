@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import Animation from "../../../../../components/Animation";
 import Button from "../../../../../components/Button";
 import TwitterAccount from "../../../../../components/TwitterAccount";
+import animations from "../../../../../consts/animations";
 import images from "../../../../../consts/images";
 import { useSteps } from "../../../../../context/StepsContext";
 import api from "../../../../../services/api";
@@ -37,7 +39,7 @@ function SendTweet() {
     setError(false);
     try {
       const res = await api.get(url);
-      if (res) {
+      if (res && res.verified_time) {
         setVerificationPending(false);
         setVerification(res);
         window.clearInterval(pollInterval.current);
@@ -80,7 +82,7 @@ function SendTweet() {
               ) : (
                 <Fade>
                   <div className="send-tweet-pending">
-                    <img src="" alt="" />
+                    <Animation data={animations.loader} />
                     <p>Waiting to verify tweet (about 1-2 minutes)...</p>
                   </div>
                 </Fade>

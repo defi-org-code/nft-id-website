@@ -7,6 +7,7 @@ import Cretificate from "../../components/Certificate";
 import Button from "../../components/Button/index";
 import { routes } from "../../consts";
 import images from "../../consts/images";
+import Loader from "../../components/Loader/index";
 interface IParams {
   tokenId?: string;
   contractAddress?: string;
@@ -22,7 +23,8 @@ function Asset() {
   const [fetcingSignature, setFetcingSignature] = useState(false);
   const [verifyingSignature, setVerifyingSignature] = useState(false);
   const [fetchingTweet, setFetchingTweet] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [certificate, setCertificate] = useState(null);
   const location = useLocation();
   useEffect(() => {
     handleOnLoad();
@@ -65,7 +67,7 @@ function Asset() {
     } catch (error) {
       setError(true);
     } finally {
-      setIsLoading(false);
+      // setIsLoading(false);
     }
   };
 
@@ -73,15 +75,27 @@ function Asset() {
     <div className="asset">
       <section className="asset-overlay"></section>
       <div className="asset-flex">
-        <Cretificate isLoading={isLoading} />
+        {isLoading ? (
+          <Loader />
+        ) : certificate ? (
+          <>
+            <Cretificate />
+            <Actions
+              fetchingAsset={fetchingAsset}
+              fetchingOwner={fetchingOwner}
+              fetcingSignature={fetcingSignature}
+              verifyingSignature={verifyingSignature}
+              fetchingTweet={fetchingTweet}
+            />
+          </>
+        ) : (
+          <img
+            src={images.emptyCertificate}
+            alt="empty certificate"
+            className="asset-empty-certificate"
+          />
+        )}
 
-        <Actions
-          fetchingAsset={fetchingAsset}
-          fetchingOwner={fetchingOwner}
-          fetcingSignature={fetcingSignature}
-          verifyingSignature={verifyingSignature}
-          fetchingTweet={fetchingTweet}
-        />
         <Button
           onClick={() => history.push(routes.verify)}
           active={true}

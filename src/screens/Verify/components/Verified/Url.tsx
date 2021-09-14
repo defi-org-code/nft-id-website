@@ -3,6 +3,7 @@ import images from "../../../../consts/images";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useState } from "react";
 import { delay } from "../../../../utils";
+const Fade = require("react-reveal/Fade");
 
 interface IProps {
   value: string;
@@ -18,26 +19,28 @@ function Url({ value }: IProps) {
     setCopied(false);
   };
   return (
-    <div className="verified-url">
-      <a href="/">
-        <img src={images.url} alt="url" />
-        {url}
-      </a>
-      <CopyToClipboard text={url} onCopy={() => {}}>
-        <Button
-          onClick={copy}
-          content={
-            <div className="button-with-img">
-              {copied && <aside className="button-copied">Copied!</aside>}
-              <img src={images.copy} alt="copy" />
-              <p>Copy</p>
-            </div>
-          }
-          active={true}
-          isLoading={false}
-        />
-      </CopyToClipboard>
-    </div>
+    <Fade bottom>
+      <div className="verified-url">
+        <a href="/">
+          <img src={images.url} alt="url" />
+          {url}
+        </a>
+        <CopyToClipboard text={url} onCopy={() => {}}>
+          <Button
+            onClick={copy}
+            content={
+              <div className="button-with-img">
+                {copied && <aside className="button-copied">Copied!</aside>}
+                <img src={images.copy} alt="copy" />
+                <p>Copy</p>
+              </div>
+            }
+            active={true}
+            isLoading={false}
+          />
+        </CopyToClipboard>
+      </div>
+    </Fade>
   );
 }
 

@@ -15,7 +15,7 @@ function Home() {
       <div className="home-flex">
         <Bounce left>
           <div className="home-left">
-            <img src={images.myNft} alt="my nft" />
+            <img src={images.title} alt="my nft" />
             <h5>You own an NFT ?</h5>
             <h3>Prove it !</h3>
             <Button

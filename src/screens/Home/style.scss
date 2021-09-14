@@ -25,17 +25,20 @@
     justify-content: center;
   }
   &-left {
+    padding-top: 70px;
     img {
-      height: 177px;
+      height: 192px;
       margin-bottom: 60px;
     }
     h5 {
       font-weight: 400;
       font-size: 1.25rem;
       margin-bottom: 20px;
+      color: rgba(255, 255, 255, 0.5);
     }
     h3 {
       font-size: 2.875rem;
+      font-weight: 700;
     }
     .button {
       margin-top: 60px;
@@ -60,6 +63,8 @@
   .home {
     padding-top: 4.3vw;
     &-left {
+      position: relative;
+      top: -50px;
       width: auto;
 
       h5 {
@@ -70,7 +75,7 @@
         font-size: 2.9vw;
       }
       img {
-        height: 11vw;
+        height: 12vw;
         margin-bottom: 3.6vw;
       }
       .button {

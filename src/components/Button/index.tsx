@@ -1,4 +1,4 @@
-import Loader from "../Loader";
+import Spinner from "../Spinner";
 
 interface IProps {
   isLoading?: boolean;
@@ -18,7 +18,7 @@ function Button({ isLoading, content, onClick, active, disabled }: IProps) {
     : "button";
   return (
     <div className={className} onClick={onClick}>
-      {isLoading && <Loader />}
+      {isLoading && <Spinner />}
       <section>{content}</section>
     </div>
   );

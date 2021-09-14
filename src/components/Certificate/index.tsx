@@ -1,54 +1,40 @@
 import Image from "../Image";
 import TwitterAccount from "../TwitterAccount";
 import images from "../../consts/images";
-import Loader from "./Loader";
-interface IProps {
-  isLoading: boolean;
-}
+import Animation from "../Animation";
+import animations from "../../consts/animations";
 
-function Cretificate({ isLoading }: IProps) {
+function Cretificate() {
   return (
     <div className="certificate">
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          <div className="certificate-avatar">
-            <Image src={images.monkey} alt="" />
-            <img
-              src={images.VarifiedLogo}
-              alt="verified-logo"
-              className="certificate-avatar-verified-logo"
-            />
-            <figure className="certificate-avatar-frame"></figure>
-            <figure className="certificate-avatar-shadow"></figure>
-          </div>
-          <div className="certificate-details">
-            <TwitterAccount
-              name="Stephen Curry"
-              twitterHandle="StephenCurry30"
-            />
-            <h2 className="certificate-details-title">
-              Certificate
-              <br />
-              of Ownership
-            </h2>
-            <div className="certificate-details-bottom">
-              <section>
-                <h5>This NFT was verified on:</h5>
-                <h4>10th September, 2021</h4>
-              </section>
-              <section>
-                <h5>Verified by:</h5>
-                <span>
-                  <img src={images.logo} alt="logo" />
-                  <img src={images.VarifiedImg} alt="verified" />
-                </span>
-              </section>
-            </div>
-          </div>
-        </>
-      )}
+      <div className="certificate-avatar">
+        <Image src={images.monkey} alt="" />
+        <Animation data={animations.stamp} loop={false} />
+
+        <figure className="certificate-avatar-frame"></figure>
+        <figure className="certificate-avatar-shadow"></figure>
+      </div>
+      <div className="certificate-details">
+        <TwitterAccount name="Stephen Curry" twitterHandle="StephenCurry30" />
+        <h2 className="certificate-details-title">
+          Certificate
+          <br />
+          of Ownership
+        </h2>
+        <div className="certificate-details-bottom">
+          <section>
+            <h5>This NFT was verified on:</h5>
+            <h4>10th September, 2021</h4>
+          </section>
+          <section>
+            <h5>Verified by:</h5>
+            <span>
+              <img src={images.logo} alt="logo" />
+              <img src={images.VarifiedImg} alt="verified" />
+            </span>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

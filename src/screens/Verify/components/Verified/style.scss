@@ -9,8 +9,127 @@
     }
   }
   &-right {
-    width: 360px;
+    width: 362px;
     margin-left: 100px;
+    position: relative;
+    &-arrow {
+      position: absolute;
+      top: 48%;
+      left: -130px;
+    }
+    &-frame {
+      width: 161%;
+      height: auto;
+      position: absolute;
+      left: 50%;
+      transform: translate(-50.5%);
+    }
+    &-bottom {
+      position: absolute;
+      bottom: -20px;
+      height: 307px;
+      width: 100%;
+      figure {
+        background: linear-gradient(
+          178.98deg,
+          #05c200 3.71%,
+          #24acd3 30.72%,
+          #7e3bd0 66.07%,
+          rgba(240, 85, 59, 0) 99.27%
+        );
+        opacity: 0.3;
+        width: 100%;
+        height: 100%;
+      }
+      &::after {
+        border-radius: 30px;
+        position: absolute;
+        top: 0px;
+        left: 50%;
+        transform: translate(-50%);
+        width: calc(100% + 40px);
+        height: 10px;
+        content: "";
+        background: white;
+      }
+    }
+  }
+  &-twitter {
+    width: calc(100% - 15px);
+    padding-top: 5px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: 99;
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+    &-info {
+      padding-left: 20px;
+      margin-top: 10px;
+      h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      p {
+        color: #526471;
+        font-size: 14px;
+        margin-bottom: 20px;
+      }
+      h5 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      a {
+        color: #1794e0;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+    &-follow {
+      background: #000000;
+      height: 31px;
+      border-radius: 15.5px;
+      padding: 0px 30px;
+      margin-left: auto;
+      margin-top: 10px;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      margin-right: 10px;
+    }
+    &-bg {
+      height: 120px;
+      width: 100%;
+      object-fit: cover;
+      .image {
+        width: 100%;
+        height: 100%;
+      }
+      &-status-bar {
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        transform: translate(-50%);
+        width: calc(100% - 20px);
+        z-index: 9;
+      }
+    }
+    #verified-twitter-asset {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid white;
+      position: absolute;
+      top: 95px;
+      left: 15px;
+      background: white;
+    }
   }
   &-proof {
     margin-top: 80px;
