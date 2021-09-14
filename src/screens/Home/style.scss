@@ -18,11 +18,11 @@
   &-flex {
     position: relative;
     z-index: 1;
-    width: 1190px;
+
     margin: 0 auto;
     align-items: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
   &-left {
     img {
@@ -45,40 +45,23 @@
     }
   }
   &-right {
-    width: 700px;
+    width: 760px;
     position: relative;
     height: 700px;
+    margin-left: 70px;
     .image {
-      position: absolute;
-    }
-    #phone {
-      width: 362px;
-
-      left: 0px;
-      top: 50px;
-      z-index: 1;
-    }
-    #certificate {
-      width: 700px;
-
-      bottom: 0px;
-      left: 0px;
-      z-index: 2;
-    }
-    #code {
-      width: 420px;
-
-      right: 20px;
-      top: 0px;
+      width: 100%;
+      height: auto;
     }
   }
 }
 
 @media only screen and (max-width: 1600px) {
   .home {
+    padding-top: 4.3vw;
     &-left {
       width: auto;
-      margin-right: 11vw;
+
       h5 {
         margin-bottom: 1.16vw;
         font-size: 1.28vw;
@@ -102,19 +85,8 @@
       justify-content: center;
     }
     &-right {
-      height: 43.8vw;
-      width: 44vw;
-      #certificate {
-        width: 43.7vw;
-      }
-      #phone {
-        width: 22.7vw;
-        top: 3.2vw;
-      }
-      #code {
-        width: 26.3vw;
-        right: 1.3vw;
-      }
+      margin-left: 5vw;
+      width: 47.6vw;
     }
   }
 }

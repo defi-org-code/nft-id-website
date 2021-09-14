@@ -1,0 +1,112 @@
+.certificate {
+  background-image: url("../../assets/images/asset/frame.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 564px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  padding: 100px 80px 100px 100px;
+  position: relative;
+  &-loader {
+    background: gray;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+  &-avatar {
+    position: relative;
+    width: 360px;
+    height: 357.83px;
+    border-radius: 20px;
+    .image {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      z-index: 10;
+      &-loader {
+        z-index: 10;
+        border-radius: 20px;
+      }
+    }
+
+    &-shadow {
+      background-image: url("../../assets/images/asset/shadow.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      content: "";
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 210%;
+      height: 210%;
+      position: absolute;
+      z-index: 0;
+    }
+    &-verified-logo {
+      position: absolute;
+      right: -35px;
+      top: -35px;
+      z-index: 10;
+      width: 90px;
+      height: 90px;
+    }
+    &-frame {
+      background-image: url("../../assets/images/asset/avatar-frame.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      content: "";
+      width: calc(100% + 71px);
+      z-index: 5;
+      height: calc(100% + 71px);
+      position: absolute;
+    }
+  }
+  &-details {
+    padding-left: 100px;
+    flex: 1;
+    .twitter-account {
+      margin-bottom: 40px;
+    }
+    &-title {
+      font-family: $kumar;
+      line-height: 55px;
+      font-size: 39px;
+      text-align: center;
+    }
+    &-bottom {
+      margin-top: 40px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      section {
+        border-bottom: 1px solid white;
+        padding-bottom: 8px;
+        height: 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h5 {
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 12px;
+        }
+        span {
+          display: flex;
+          justify-content: space-between;
+        }
+        img {
+          width: 25px;
+          height: auto;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+}

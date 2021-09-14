@@ -1,6 +1,6 @@
 import ActiveStepImg from "../assets/images/active-step.svg";
 import SuccessImg from "../assets/images/success.svg";
-import AssetPlaceholder from "../assets/images/asset-placeholder.svg";
+import AssetPlaceholder from "../assets/images/asset-placeholder.png";
 import StepsBg from "../assets/images/steps-bg.png";
 import LinkImg from "../assets/images/link.svg";
 import MetamaskImg from "../assets/images/metamask.png";
@@ -16,6 +16,12 @@ import code from "../assets/images/home/code.png";
 import phone from "../assets/images/home/phone.png";
 import homeBG from "../assets/images/home/bg.svg";
 import verifyCode from "../assets/images/code.png";
+import monkey from "../assets/images/asset/monkey.png";
+import codeframe from "../assets/images/asset/code.png";
+import homeImages from "../assets/images/home/images.png";
+import url from "../assets/images/url.svg";
+import copy from "../assets/images/copy.svg";
+
 const images = {
   ActiveStepImg,
   SuccessImg,
@@ -35,6 +41,11 @@ const images = {
   phone,
   homeBG,
   verifyCode,
+  monkey,
+  codeframe,
+  homeImages,
+  url,
+  copy,
 };
 
 export default images;

@@ -1,0 +1,90 @@
+.verified {
+  justify-content: space-between;
+  display: flex;
+  &-left {
+    width: 590px;
+    .certificate {
+      zoom: 0.6;
+      height: 540px;
+    }
+  }
+  &-right {
+    width: 360px;
+    margin-left: 100px;
+  }
+  &-proof {
+    margin-top: 80px;
+    h4 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    h5 {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    &-urls {
+      margin-top: 30px;
+    }
+  }
+  .verified-url {
+    height: 65px;
+    margin-bottom: 20px;
+    padding: 0px 10px;
+    display: flex;
+    align-items: center;
+
+    background: linear-gradient(
+      94.98deg,
+      rgba(5, 194, 0, 0.3) -3.25%,
+      rgba(36, 172, 211, 0.3) 9.98%,
+      rgba(126, 59, 208, 0.3) 39.27%,
+      rgba(240, 85, 59, 0.3) 91.59%
+    );
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.16);
+    border-radius: 10px;
+    a {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+      img {
+        margin-right: 10px;
+      }
+    }
+    .button {
+      margin-left: auto;
+      height: 44px;
+      position: relative;
+      &-copied {
+        position: absolute;
+        padding: 10px;
+        background: black;
+        left: 50%;
+        transform: translate(-50%);
+        top: -40px;
+        border-radius: 10px;
+        font-size: 12px;
+        &::after {
+          position: absolute;
+          left: 50%;
+          transform: rotate(45deg) translate(-50%);
+          bottom: -8px;
+          content: "";
+          width: 10px;
+          height: 10px;
+          background: black;
+        }
+      }
+      section {
+        padding: 0px 20px;
+        font-size: 14px;
+      }
+      &::after {
+        height: 30px;
+      }
+    }
+  }
+}

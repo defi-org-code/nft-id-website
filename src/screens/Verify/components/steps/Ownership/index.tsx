@@ -7,6 +7,7 @@ import { useWeb3 } from "../../../../../context/Web3Context";
 import api from "../../../../../services/api";
 import AssetAvatar from "../../AssetAvatar";
 import Error from "../../Error";
+import TwitterAccount from "../../../../../components/TwitterAccount";
 const Bounce = require("react-reveal/Bounce");
 const Fade = require("react-reveal/Fade");
 
@@ -21,10 +22,8 @@ const createPendingRequest = async (
     json: signData,
     openseaUrl,
   };
-  console.log(body);
-  const name = await api.post(url, body);
-  console.log({ name });
-  return name;
+  const res = await api.post(url, body);
+  return res.data.name;
 };
 
 function Ownership() {
@@ -34,7 +33,8 @@ function Ownership() {
     twitterHandle,
     setTwitterHandle,
     signature,
-    signData,
+    name,
+    setName,
     openSeaUrl,
     setAllowNextStep,
   } = useSteps();
@@ -44,17 +44,16 @@ function Ownership() {
   const [isLoading, setIsLoading] = useState(false);
   const sign = async (twitterHandle: string) => {
     if (!web3) return;
-    const messageToSign = {"twitterHandle":twitterHandle};
+    const messageToSign = { twitterHandle: twitterHandle };
     const signData = JSON.stringify(messageToSign);
     setSignData(signData);
     setError(false);
     try {
       setIsLoading(true);
       const res = await web3.eth.personal.sign(signData, account, "");
-      await createPendingRequest(res, signData, openSeaUrl);
+      setName(await createPendingRequest(res, signData, openSeaUrl));
       setSignature(res);
     } catch (error) {
-      console.log(error);
       setError(true);
     } finally {
       setIsLoading(false);
@@ -81,37 +80,35 @@ function Ownership() {
       >
         <AssetAvatar />
         <div className="step-content">
-          <div className="ownership-submit" ref={submitContainerRef}>
-            <input
-              value={twitterHandle}
-              placeholder="Twitter Username"
-              onChange={(e) => setTwitterHandle(e.target.value)}
-            />
-            <Button
-              onClick={onClick}
-              disabled={!twitterHandle}
-              active={!!twitterHandle}
-              isLoading={isLoading}
-              content={
-                <div className="button-with-img">
-                  <img src={images.MetamaskImg} alt="metamask" />
-                  <p>Sign with Metamask</p>
-                </div>
-              }
-            />
-          </div>
-          {error && <Error text="Something went wrong..." />}
-          {signature && (
+          {!signature ? (
+            <div className="ownership-submit" ref={submitContainerRef}>
+              <input
+                value={twitterHandle}
+                placeholder="Twitter Username"
+                onChange={(e) => setTwitterHandle(e.target.value)}
+              />
+              <Button
+                onClick={onClick}
+                disabled={!twitterHandle}
+                active={!!twitterHandle}
+                isLoading={isLoading}
+                content={
+                  <div className="button-with-img">
+                    <img src={images.MetamaskImg} alt="metamask" />
+                    <p>Sign with Metamask</p>
+                  </div>
+                }
+              />
+            </div>
+          ) : (
             <div className="ownership-account">
-              <Fade>
-                <div className="ownership-account-top">
-                  <img src={images.TwitterImg} alt="twitter" />
-                  <h4>{twitterHandle}</h4>
-                </div>
-              </Fade>
+              <TwitterAccount twitterHandle={twitterHandle} name={name || ""} />
+
               <Success text="Successfully Signed!" />
             </div>
           )}
+
+          {error && <Error text="Something went wrong..." />}
         </div>
       </div>
     </Bounce>

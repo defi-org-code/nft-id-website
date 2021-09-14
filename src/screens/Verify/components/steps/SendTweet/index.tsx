@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import Button from "../../../../../components/Button";
+import TwitterAccount from "../../../../../components/TwitterAccount";
 import images from "../../../../../consts/images";
 import { useSteps } from "../../../../../context/StepsContext";
 import api from "../../../../../services/api";
 import AssetAvatar from "../../AssetAvatar";
+import VerifiedAsset from "../../VerifiedAsset";
 import Varified from "./Varified";
 const Bounce = require("react-reveal/Bounce");
 const Fade = require("react-reveal/Fade");
@@ -17,6 +19,7 @@ function SendTweet() {
     verificationPending,
     setVerificationPending,
     setAllowNextStep,
+    name,
   } = useSteps();
   const pollInterval = useRef<any>(null);
   const [error, setError] = useState(false);
@@ -53,38 +56,39 @@ function SendTweet() {
   useEffect(() => {
     setAllowNextStep(!!verification);
   }, [setAllowNextStep, verification]);
+
   return (
     <Bounce right>
       <div className="step send-tweet">
-        <AssetAvatar varified={!!verification} />
+        {verification ? <VerifiedAsset /> : <AssetAvatar />}
 
         <div className="step-content">
-          <div className="send-tweet-not-varified">
-            <div className="send-tweet-account">
-              <img src={images.TwitterImg} alt="twitter" />
-              <h4>{twitterHandle}</h4>
-            </div>
-            {!verificationPending ? (
-              <Button
-                onClick={onClick}
-                active={true}
-                content={
-                  <div className="button-with-img">
-                    <img src={images.TwitterWhiteImg} alt="twitter" />
-                    <p>Send Tweet</p>
+          {!verification ? (
+            <div className="send-tweet-not-varified">
+              <TwitterAccount twitterHandle={twitterHandle} name={name} />
+              {!verificationPending ? (
+                <Button
+                  onClick={onClick}
+                  active={true}
+                  content={
+                    <div className="button-with-img">
+                      <img src={images.TwitterWhiteImg} alt="twitter" />
+                      <p>Send Tweet</p>
+                    </div>
+                  }
+                />
+              ) : (
+                <Fade>
+                  <div className="send-tweet-pending">
+                    <img src="" alt="" />
+                    <p>Waiting to verify tweet (about 1-2 minutes)...</p>
                   </div>
-                }
-              />
-            ) : (
-              <Fade>
-                <div className="send-tweet-pending">
-                  <img src="" alt="" />
-                  <p>Waiting to verify tweet (about 1-2 minutes)...</p>
-                </div>
-              </Fade>
-            )}
-          </div>
-          {verification && <Varified />}
+                </Fade>
+              )}
+            </div>
+          ) : (
+            <Varified />
+          )}
         </div>
       </div>
     </Bounce>

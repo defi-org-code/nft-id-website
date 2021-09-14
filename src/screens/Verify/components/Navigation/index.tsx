@@ -4,8 +4,10 @@ import { steps } from "../../Data";
 const Bounce = require("react-reveal/Bounce");
 
 function Navigation() {
-  const { setCurrectStep, currentStep, allowNextStep } = useSteps();
-  const disabled = !allowNextStep;
+  const { setCurrectStep, currentStep, allowNextStep, setDone } = useSteps();
+  // const disabled = !allowNextStep;
+  const disabled = false;
+
   const isLastStep = steps.length - 1 === currentStep;
   const isFirstStep = currentStep === 0;
   const next = () => {
@@ -21,7 +23,7 @@ function Navigation() {
     <Bounce bottom>
       <div className="steps-navigation">
         <Button
-          onClick={next}
+          onClick={isLastStep ? () => setDone(true) : next}
           content={<>{isLastStep ? "Done" : isFirstStep ? "Start" : "Next"}</>}
           disabled={disabled}
           active={!disabled}

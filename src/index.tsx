@@ -5,14 +5,17 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { StepsProvider } from "./context/StepsContext";
 import { Web3Provider } from "./context/Web3Context";
+import { MainProvider } from "./context/MainContext";
 
 ReactDOM.render(
   <Web3Provider>
-    <StepsProvider>
-      <Router>
-        <App />
-      </Router>
-    </StepsProvider>
+    <MainProvider>
+      <StepsProvider>
+        <Router>
+          <App />
+        </Router>
+      </StepsProvider>
+    </MainProvider>
   </Web3Provider>,
   document.getElementById("root")
 );

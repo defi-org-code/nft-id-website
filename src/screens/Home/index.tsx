@@ -27,13 +27,7 @@ function Home() {
         </Bounce>
         <Bounce right>
           <div className="home-right">
-            <Image src={images.code} alt="code" id="code" />
-            <Image src={images.phone} alt="phone" id="phone" />
-            <Image
-              src={images.certificate}
-              alt="certificate"
-              id="certificate"
-            />
+            <Image src={images.homeImages} alt="" />
           </div>
         </Bounce>
       </div>

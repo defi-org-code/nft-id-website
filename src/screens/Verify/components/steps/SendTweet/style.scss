@@ -7,7 +7,7 @@
     height: 100%;
     align-items: center;
   }
-  &-account {
+  .twitter-account {
     flex: 1;
     background: rgba(196, 196, 196, 0.1);
     border-radius: 10px;
@@ -17,17 +17,6 @@
     align-items: center;
     justify-content: center;
     margin-bottom: 30px;
-    img {
-      width: 30px;
-      height: 30px;
-      object-fit: contain;
-      margin-bottom: 5px;
-    }
-    h4 {
-      font-size: 1.625rem;
-      color: white;
-      font-family: $main-font;
-    }
   }
   &-pending {
     display: flex;

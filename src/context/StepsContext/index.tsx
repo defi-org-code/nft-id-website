@@ -21,6 +21,10 @@ interface IStepsContext {
   setVerification: (val: string) => void;
   verificationPending: boolean;
   setVerificationPending: (val: boolean) => void;
+  name: string;
+  setName: (val: string) => void;
+  done: boolean;
+  setDone: (val: boolean) => void;
 }
 
 interface IProps {
@@ -39,6 +43,9 @@ const StepsProvider = ({ children }: IProps) => {
   const [allowNextStep, setAllowNextStep] = useState<boolean>(true);
   const [twitterHandle, setTwitterHandle] = useState<string>("");
   const [verification, setVerification] = useState<string>("");
+  const [name, setName] = useState<string>("");
+  const [done, setDone] = useState<boolean>(false);
+
   const [verificationPending, setVerificationPending] = useState<boolean>(
     false
   );
@@ -60,10 +67,14 @@ const StepsProvider = ({ children }: IProps) => {
     setAllowNextStep,
     twitterHandle,
     setTwitterHandle,
-    verification: verification,
-    setVerification: setVerification,
-    verificationPending: verificationPending,
-    setVerificationPending: setVerificationPending,
+    verification,
+    setVerification,
+    verificationPending,
+    setVerificationPending,
+    name,
+    setName,
+    setDone,
+    done,
   };
 
   return (
