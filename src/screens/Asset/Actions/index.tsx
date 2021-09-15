@@ -45,12 +45,15 @@ function Actions({ certificate }: IProps) {
 
   const verifyTweet = async () => {
     const tweet = await api.get(`isTweetExist/${certificate.tweet_id}`);
-    setIsTweetVerified(tweet);
+    if (tweet && tweet.result) {
+      setIsTweetVerified(true);
+    }
   };
 
   useEffect(() => {
-    verifyTweet();
-    stateMachine();
+    verifyTweet().then(() => {
+      stateMachine();
+    });
   }, []);
 
   const openSeaUrlParams = encodeURI(
