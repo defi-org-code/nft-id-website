@@ -62,32 +62,35 @@ function SendTweet() {
         {certificate ? <VerifiedAsset /> : <AssetAvatar />}
 
         <div className="step-content">
-          {!certificate ? (
-            <div className="send-tweet-not-varified">
-              <TwitterAccount twitterHandle={twitterHandle} name={name} />
-              {!verificationPending ? (
-                <Button
-                  onClick={onClick}
-                  active={true}
-                  content={
-                    <div className="button-with-img">
-                      <img src={images.TwitterWhiteImg} alt="twitter" />
-                      <p>Send Tweet</p>
-                    </div>
-                  }
-                />
-              ) : (
-                <Fade>
-                  <div className="send-tweet-pending">
-                    <Animation data={animations.loader} />
-                    <p>Waiting to verify tweet (about 1-2 minutes)...</p>
+          <div
+            className="send-tweet-not-varified"
+            style={{
+              opacity: certificate ? "0" : "1",
+              pointerEvents: certificate ? "none" : "all",
+            }}
+          >
+            <TwitterAccount twitterHandle={twitterHandle} name={name} />
+            {!verificationPending ? (
+              <Button
+                onClick={onClick}
+                active={true}
+                content={
+                  <div className="button-with-img">
+                    <img src={images.TwitterWhiteImg} alt="twitter" />
+                    <p>Send Tweet</p>
                   </div>
-                </Fade>
-              )}
-            </div>
-          ) : (
-            <Varified />
-          )}
+                }
+              />
+            ) : (
+              <Fade>
+                <div className="send-tweet-pending">
+                  <Animation data={animations.loader} />
+                  <p>Waiting to verify tweet (about 1-2 minutes)...</p>
+                </div>
+              </Fade>
+            )}
+          </div>
+          {certificate && <Varified />}
         </div>
       </div>
     </Bounce>

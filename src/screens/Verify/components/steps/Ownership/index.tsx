@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Success from "../../Success";
 import images from "../../../../../consts/images";
@@ -37,7 +37,6 @@ function Ownership() {
     openSeaUrl,
     setAllowNextStep,
   } = useSteps();
-  const submitContainerRef = useRef<HTMLDivElement>(null);
   const { account, web3 } = useWeb3();
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -61,8 +60,6 @@ function Ownership() {
 
   useEffect(() => {
     if (signature) {
-      if (submitContainerRef && submitContainerRef.current)
-        submitContainerRef.current.style.opacity = "0";
       setAllowNextStep(true);
     } else {
       setAllowNextStep(false);
@@ -81,27 +78,32 @@ function Ownership() {
       >
         <AssetAvatar />
         <div className="step-content">
-          {!signature ? (
-            <div className="ownership-submit" ref={submitContainerRef}>
-              <input
-                value={twitterHandle}
-                placeholder="Twitter Username"
-                onChange={(e) => setTwitterHandle(e.target.value)}
-              />
-              <Button
-                onClick={onClick}
-                disabled={!twitterHandle}
-                active={!!twitterHandle}
-                isLoading={isLoading}
-                content={
-                  <div className="button-with-img">
-                    <img src={images.MetamaskImg} alt="metamask" />
-                    <p>Sign with Metamask</p>
-                  </div>
-                }
-              />
-            </div>
-          ) : (
+          <div
+            className="ownership-submit"
+            style={{
+              opacity: signature ? "0" : "1",
+              pointerEvents: signature ? "none" : "all",
+            }}
+          >
+            <input
+              value={twitterHandle}
+              placeholder="Twitter Username"
+              onChange={(e) => setTwitterHandle(e.target.value)}
+            />
+            <Button
+              onClick={onClick}
+              disabled={!twitterHandle}
+              active={!!twitterHandle}
+              isLoading={isLoading}
+              content={
+                <div className="button-with-img">
+                  <img src={images.MetamaskImg} alt="metamask" />
+                  <p>Sign with Metamask</p>
+                </div>
+              }
+            />
+          </div>
+          {signature && (
             <div className="ownership-account">
               <TwitterAccount twitterHandle={twitterHandle} name={name || ""} />
 

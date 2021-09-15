@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../../components/Button";
-import Image from "../../components/Image";
 import images from "../../consts/images";
 import { useHistory } from "react-router-dom";
 import { routes } from "../../consts";
@@ -13,6 +12,7 @@ function Home() {
       <img src={images.homeBG} alt="background" className="home-bg" />
       <img src={images.logo} alt="logo" className="home-logo" />
       <div className="home-flex">
+        <img src={images.title} alt="my nft" className="home-flex-mobile-img" />
         <Bounce left>
           <div className="home-left">
             <img src={images.title} alt="my nft" />
@@ -27,7 +27,7 @@ function Home() {
         </Bounce>
         <Bounce right>
           <div className="home-right">
-            <Image src={images.homeImages} alt="" />
+            <img src={images.homeImages} alt="" />
           </div>
         </Bounce>
       </div>

@@ -26,7 +26,13 @@ function Navigation() {
 
   return (
     <Bounce bottom>
-      <div className="steps-navigation">
+      <div
+        className={
+          isFirstStep
+            ? "steps-navigation steps-navigation-first"
+            : "steps-navigation"
+        }
+      >
         <Button
           onClick={onClick}
           content={<>{isLastStep ? "Done" : isFirstStep ? "Start" : "Next"}</>}

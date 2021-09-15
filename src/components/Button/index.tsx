@@ -17,7 +17,7 @@ function Button({ isLoading, content, onClick, active, disabled }: IProps) {
     ? "button button-disabled"
     : "button";
   return (
-    <div className={className} onClick={onClick}>
+    <div className={className} onClick={!disabled ? onClick : () => {}}>
       {isLoading && <Spinner />}
       <section>{content}</section>
     </div>

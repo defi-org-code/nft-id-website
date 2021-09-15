@@ -33,11 +33,12 @@ function ConnectWallet() {
           <div className="wallet-connect-owner">
             <h4>NFT Owner:</h4>
             <a
-              href={`https://etherscan.io/address/${account}`}
+              href={`https://etherscan.io/address/${owner}`}
               target="_blank"
               rel="noreferrer"
             >
-              {owner} <img src={images.LinkImg} alt="link" />
+              <p className="overflow-text"> {owner}</p>{" "}
+              <img src={images.LinkImg} alt="link" />
             </a>
           </div>
           <Button
@@ -46,7 +47,7 @@ function ConnectWallet() {
               <div className="button-with-img">
                 <img src={images.MetamaskImg} alt="metamask" />
                 {account ? (
-                  <p>{makeElipsisAddress(account, 12)}</p>
+                  <p>{makeElipsisAddress(account, 7)}</p>
                 ) : (
                   <p>Connect MetaMask</p>
                 )}

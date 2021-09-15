@@ -44,3 +44,16 @@
     }
   }
 }
+
+@media only screen and (max-width: 1200px) {
+  .asset {
+    &-flex {
+      width: 800px;
+    }
+
+    .certificate {
+      height: 630px;
+      zoom: 0.7;
+    }
+  }
+}

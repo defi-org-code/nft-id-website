@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import images from "../../../consts/images";
+import CodeFrame from "../../../components/CodeFrame";
 import api from "../../../services/api";
 import { ICertificate } from "../../../types";
 import { delay } from "../../../utils";
@@ -67,12 +67,8 @@ function Actions({ certificate }: IProps) {
     <div className="asset-proof">
       <h3 className="asset-proof-title">On-Chain Proof</h3>
       <div className="asset-proof-flex">
-        <img
-          className="asset-proof-frame"
-          src={images.codeframe}
-          alt="code frame"
-        />
         <div className="asset-proof-actions">
+          <CodeFrame />
           {fetchingAsset && (
             <Fade>
               <section className="asset-proof-fetching-asset">
@@ -146,7 +142,7 @@ function Actions({ certificate }: IProps) {
               <section className="asset-proof-fetching-tweet">
                 <p>Fetching tweet...</p>
                 {fetchingTweetDone && isTweetVerified ? (
-                  <p>
+                  <p className="asset-yellow">
                     <a
                       target="_blank"
                       rel="noreferrer"

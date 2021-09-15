@@ -21,10 +21,16 @@ function Url({ value, urlParams }: IProps) {
   return (
     <Fade bottom>
       <div className="verified-url">
-        <a rel="noreferrer" target="_blank" href={`https://mynft.fyi/${value}`}>
-          <img src={images.url} alt="url" />
-          {`https://mynft.fyi/${value}`}
-        </a>
+        <img src={images.url} alt="url" />
+        <p className="overflow-text">
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href={`https://mynft.fyi/${value}`}
+          >
+            {`https://mynft.fyi/${value}`}
+          </a>
+        </p>
         <CopyToClipboard
           text={`https://mynft.fyi/${urlParams}`}
           onCopy={() => {}}
