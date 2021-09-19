@@ -1,13 +1,13 @@
 .verified {
-  justify-content: space-between;
+  justify-content: center;
   display: flex;
   overflow: hidden;
   padding-bottom: 50px;
+  width: 100%;
   &-left {
     width: 590px;
     .certificate {
-      zoom: 0.6;
-      height: 540px;
+      zoom: 0.58;
     }
   }
   &-right {
@@ -226,7 +226,6 @@
     &-left {
       width: 530px;
       .certificate {
-        height: 580px;
         zoom: 0.5;
       }
     }
@@ -235,7 +234,99 @@
         height: 280px;
       }
       &-arrow {
-        top: 55%;
+        top: 54%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .verified {
+    &-twitter {
+      &-bg {
+        height: 90px;
+      }
+      #verified-twitter-asset {
+        top: 60px;
+      }
+    }
+    &-right {
+      margin-left: 60px;
+      &-bottom {
+        bottom: -40px;
+        &::after {
+          top: 0px;
+        }
+      }
+      &-arrow {
+        width: 300px;
+        left: -70px;
+        top: 57%;
+      }
+    }
+    &-left {
+      width: 450px;
+      .certificate {
+        zoom: 0.44;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .verified {
+    flex-direction: column;
+    align-items: center;
+    &-proof {
+      width: calc(100% - 50px);
+      margin: 0 auto;
+      margin-top: 70px;
+    }
+    &-left {
+      width: 100%;
+      align-content: center;
+
+      display: flex;
+      flex-direction: column;
+
+      .certificate {
+        zoom: 1;
+        margin: 0 auto;
+      }
+    }
+    &-right {
+      width: 330px;
+      margin-top: 40px;
+      display: flex;
+      justify-content: center;
+      height: 600px;
+      margin-left: 0px;
+      &-arrow {
+        display: none;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .verified {
+    &-left {
+      .certificate {
+        zoom: 0.85;
+      }
+    }
+    &-right {
+      width: 310px;
+      height: 580px;
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .verified {
+    &-left {
+      .certificate {
+        zoom: 0.7;
       }
     }
   }

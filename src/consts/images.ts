@@ -27,7 +27,7 @@ import phoneStatusBar from "../assets/images/verify/phone-status-bar.svg";
 import arrow from "../assets/images/verify/arrow.svg";
 import emptyCertificate from "../assets/images/empty-certificate.png";
 import line from "../assets/images/line.svg";
-
+import mobileCertificateFrame from "../assets/images/mobile/certificate-frame.png";
 const images = {
   ActiveStepImg,
   SuccessImg,
@@ -58,6 +58,7 @@ const images = {
   arrow,
   emptyCertificate,
   line,
+  mobileCertificateFrame,
 };
 
 export default images;

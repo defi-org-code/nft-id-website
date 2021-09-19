@@ -7,7 +7,7 @@ import images from "../../../../../consts/images";
 import { useSteps } from "../../../../../context/StepsContext";
 import api from "../../../../../services/api";
 import AssetAvatar from "../../AssetAvatar";
-import VerifiedAsset from "../../VerifiedAsset";
+import VerifiedAsset from "../../../../../components/VerifiedAsset";
 import Varified from "./Varified";
 const Bounce = require("react-reveal/Bounce");
 const Fade = require("react-reveal/Fade");
@@ -59,7 +59,11 @@ function SendTweet() {
   return (
     <Bounce right>
       <div className="step send-tweet">
-        {certificate ? <VerifiedAsset /> : <AssetAvatar />}
+        {certificate ? (
+          <VerifiedAsset asset={certificate.nft_image} />
+        ) : (
+          <AssetAvatar />
+        )}
 
         <div className="step-content">
           <div

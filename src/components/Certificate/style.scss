@@ -2,13 +2,13 @@
   background-image: url("../../assets/images/asset/frame.png");
   background-size: cover;
   background-repeat: no-repeat;
-  width: 100%;
+  width: 1024px;
   height: 564px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  padding: 100px 110px 100px 100px;
+  padding: 0px 90px 0px 40px;
   position: relative;
   &-loader {
     background: gray;
@@ -18,62 +18,33 @@
     left: 0px;
     top: 0px;
   }
-  &-avatar {
-    position: relative;
-    width: 360px;
-    height: 357.83px;
-    border-radius: 20px;
-    .image {
-      border-radius: 20px;
-      overflow: hidden;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      z-index: 10;
-      &-loader {
-        z-index: 10;
-        border-radius: 20px;
-      }
-    }
-
-    &-shadow {
-      background-image: url("../../assets/images/asset/shadow.png");
+  .verified-asset {
+    width: 500px;
+    height: 500px;
+    &-frame {
+      background-image: url("../../assets/images/asset/avatar-frame-2.png");
       background-size: cover;
-      background-repeat: no-repeat;
-      content: "";
+      width: 147%;
+      height: 147%;
       left: 50%;
       top: 50%;
+      background-position: center;
       transform: translate(-50%, -50%);
-      width: 210%;
-      height: 210%;
-      position: absolute;
-      z-index: 0;
     }
     .lottie {
-      position: absolute;
-      right: -70px;
-      top: -70px;
-      z-index: 10;
-      width: 150px;
-      z-index: 99;
-      height: 150px;
+      width: 140px;
+      height: 140px;
+      top: -10px;
+      right: -10px;
     }
-    &-frame {
-      background-image: url("../../assets/images/avatar-frame.png");
-      background-size: cover;
-      background-repeat: no-repeat;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      content: "";
-      width: calc(100% + 70px);
-      z-index: 5;
-      height: calc(100% + 70px);
-      position: absolute;
+    #asset-img {
+      border-radius: 20px;
+      position: relative;
+      transform: translate(1px);
     }
   }
   &-details {
-    padding-left: 100px;
+    padding-left: 30px;
     flex: 1;
     .twitter-account {
       margin-bottom: 40px;
@@ -85,14 +56,14 @@
       text-align: center;
     }
     &-bottom {
-      margin-top: 40px;
+      margin-top: 50px;
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
       section {
         border-bottom: 1px solid white;
         padding-bottom: 8px;
-        height: 64px;
+        height: 60px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -109,6 +80,53 @@
           height: auto;
           object-fit: cover;
         }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .certificate {
+    overflow: hidden;
+    background-image: url("../../assets/images/mobile/certificate-frame.png");
+    flex-direction: column;
+    background-position: center;
+    width: 378px;
+    height: 683px;
+    padding: 0px;
+    padding-top: 36px;
+    .verified-asset {
+      width: 300px;
+      height: 300px;
+
+      #asset-img {
+        border-radius: 10px;
+        transform: none;
+        transform: translate(1px);
+        position: relative;
+      }
+      .lottie {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    &-details {
+      padding: 10px 45px 30px 45px;
+      .twitter-account {
+        margin-bottom: 20px;
+        img {
+          margin-bottom: 10px;
+        }
+      }
+      &-bottom {
+        margin-top: 30px;
+        section {
+          height: 55px;
+        }
+      }
+      &-title {
+        font-size: 28px;
+        line-height: 36px;
       }
     }
   }

@@ -44,6 +44,7 @@ const StepsProvider = ({ children }: IProps) => {
   const [allowNextStep, setAllowNextStep] = useState<boolean>(true);
   const [twitterHandle, setTwitterHandle] = useState<string>("");
   const [certificate, setCertificate] = useState<ICertificate | null>(null);
+
   const [name, setName] = useState<string>("");
   const [done, setDone] = useState<boolean>(false);
 

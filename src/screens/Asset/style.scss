@@ -31,7 +31,7 @@
   }
   &-flex {
     position: relative;
-    width: 1024px;
+
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -47,12 +47,49 @@
 
 @media only screen and (max-width: 1200px) {
   .asset {
-    &-flex {
+    &-proof {
       width: 800px;
     }
 
     .certificate {
-      height: 630px;
+      zoom: 0.78;
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .asset {
+    padding-top: 30px;
+    &-flex {
+      width: 100%;
+    }
+    &-proof {
+      margin-top: 100px;
+      width: calc(100% - 40px);
+      &-actions {
+        padding: 70px 30px 50px 30px;
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+    .certificate {
+      zoom: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .asset {
+    .certificate {
+      zoom: 0.85;
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .asset {
+    .certificate {
       zoom: 0.7;
     }
   }
