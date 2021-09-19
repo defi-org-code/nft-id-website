@@ -15,6 +15,7 @@ function Navigation() {
     if (disabled) {
       return;
     }
+    window.scrollTo(0, 0);
     if (isLastStep) {
       analytics.sendEvent("TAP_ON_DONE_AFTER_VERIFY");
       return setDone(true);

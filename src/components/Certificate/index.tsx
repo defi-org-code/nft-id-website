@@ -8,7 +8,6 @@ interface IProps {
 }
 
 function Cretificate({ data }: IProps) {
-  console.log({ data });
   const { twitter_user_info, twitter_handle, nft_image, verified_time } = data;
   return (
     <div className="certificate">

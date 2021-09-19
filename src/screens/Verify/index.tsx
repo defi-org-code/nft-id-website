@@ -6,9 +6,14 @@ import Verified from "./components/Verified";
 import Step from "./components/steps/Step";
 import StepsProgress from "./components/StepsProgress";
 import { steps } from "./Data";
+import { useEffect } from "react";
 
 function Verify() {
   const { done } = useSteps();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="verify">
       <div className="verify-overlay"></div>

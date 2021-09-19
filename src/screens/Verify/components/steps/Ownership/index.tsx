@@ -42,7 +42,7 @@ function Ownership() {
   const [isLoading, setIsLoading] = useState(false);
   const sign = async (twitterHandle: string) => {
     if (!web3) return;
-    const messageToSign = { twitterHandle: twitterHandle.replace('@', '') };
+    const messageToSign = { twitterHandle: twitterHandle.replace("@", "") };
     const signData = JSON.stringify(messageToSign);
     setSignData(signData);
     setError(false);

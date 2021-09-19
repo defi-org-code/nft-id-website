@@ -153,6 +153,9 @@
       flex-direction: column;
       height: auto;
       padding: 20px;
+      input {
+        text-indent: 10px;
+      }
       &-content {
         margin: 0px;
         width: 100%;

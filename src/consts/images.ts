@@ -1,4 +1,4 @@
-import ActiveStepImg from "../assets/images/active-step.svg";
+import ActiveStepImg from "../assets/images/active-step.png";
 import SuccessImg from "../assets/images/success.svg";
 import AssetPlaceholder from "../assets/images/asset-placeholder.png";
 import StepsBg from "../assets/images/steps-bg.png";

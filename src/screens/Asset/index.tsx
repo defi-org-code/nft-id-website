@@ -8,8 +8,8 @@ import Cretificate from "../../components/Certificate";
 import Button from "../../components/Button/index";
 import { routes } from "../../consts";
 import images from "../../consts/images";
-import Loader from "../../components/Loader/index";
 import { ICertificate } from "../../types";
+import Spinner from "../../components/Spinner";
 interface IParams {
   tokenId?: string;
   contractAddress?: string;
@@ -57,20 +57,22 @@ function Asset() {
     <div className="asset">
       <section className="asset-overlay"></section>
       <div className="asset-flex">
-        {isLoading ? (
-          <Loader />
-        ) : certificate ? (
-          <>
-            <Cretificate data={certificate} />
+        {certificate && <Cretificate data={certificate} />}
+        <div className="asset-grid">
+          {isLoading ? (
+            <div className="asset-loader">
+              <Spinner />
+            </div>
+          ) : certificate ? (
             <Actions certificate={certificate} />
-          </>
-        ) : (
-          <img
-            src={images.emptyCertificate}
-            alt="empty certificate"
-            className="asset-empty-certificate"
-          />
-        )}
+          ) : (
+            <img
+              src={images.emptyCertificate}
+              alt="empty certificate"
+              className="asset-empty-certificate"
+            />
+          )}
+        </div>
 
         <Button
           onClick={() => history.push(routes.verify)}

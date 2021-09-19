@@ -119,7 +119,7 @@ function Actions({ certificate }: IProps) {
               <section className="asset-proof-fetching-signature">
                 <p>fetching siganture...</p>
                 {fetcingSignatureDone && (
-                  <p className="overflow-text asset-yellow">
+                  <p className=" asset-yellow">
                     <span> Signature: </span>
                     {certificate.signature}
                   </p>
