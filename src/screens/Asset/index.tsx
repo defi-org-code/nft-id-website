@@ -10,6 +10,7 @@ import { routes } from "../../consts";
 import images from "../../consts/images";
 import { ICertificate } from "../../types";
 import Spinner from "../../components/Spinner";
+import VerifyAgain from "./VerifyAgain";
 interface IParams {
   tokenId?: string;
   contractAddress?: string;
@@ -21,6 +22,7 @@ function Asset() {
   const { tokenId, contractAddress, twitterHandle }: IParams = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
+  const [verifyAgain, setVerifyAgain] = useState(false);
   const [certificate, setCertificate] = useState<ICertificate | null>(null);
   useEffect(() => {
     handleOnLoad();
@@ -50,13 +52,22 @@ function Asset() {
     if (res.json) {
       res.twitter_user_info = JSON.parse(res.twitter_user_info);
       const data = res;
+      console.log({ data });
       setCertificate(data);
     }
   };
   return (
     <div className="asset">
-      <section className="asset-overlay"></section>
-      <div className="asset-flex">
+      {certificate && verifyAgain && (
+        <VerifyAgain
+          close={() => setVerifyAgain(false)}
+          signer={certificate.owner_public_key}
+          twitterHandle={certificate.twitter_handle}
+          signature={certificate.signature}
+        />
+      )}
+      <div className="asset-flex" style={{ opacity: verifyAgain ? "0" : "1" }}>
+        <section className="asset-overlay"></section>
         {certificate && <Cretificate data={certificate} />}
         <div className="asset-grid">
           {isLoading ? (
@@ -64,7 +75,7 @@ function Asset() {
               <Spinner />
             </div>
           ) : certificate ? (
-            <Actions certificate={certificate} />
+            <Actions verifyAgain={() => {}} certificate={certificate} />
           ) : (
             <img
               src={images.emptyCertificate}

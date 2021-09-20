@@ -1,0 +1,14 @@
+.input {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #ffffff;
+  height: 58px;
+  width: 100%;
+  text-indent: 30px;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: $main-font;
+  color: white;
+
+  @extend .overflow-text;
+}

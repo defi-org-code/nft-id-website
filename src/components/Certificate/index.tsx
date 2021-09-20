@@ -11,6 +11,7 @@ function Cretificate({ data }: IProps) {
   const { twitter_user_info, twitter_handle, nft_image, verified_time } = data;
   return (
     <div className="certificate">
+      <img src={nft_image} alt="asset" className="certificate-bg" />
       <VerifiedAsset asset={nft_image} />
       <div className="certificate-details">
         <TwitterAccount

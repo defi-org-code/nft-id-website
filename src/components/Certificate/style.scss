@@ -10,6 +10,17 @@
   overflow: hidden;
   padding: 0px 90px 0px 40px;
   position: relative;
+  &-bg {
+    position: absolute;
+    right: 22px;
+    top: 22px;
+    width: 36%;
+    height: auto;
+    opacity: 0.1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    transform: rotateY(180deg);
+  }
   &-loader {
     background: gray;
     width: 100%;
@@ -95,6 +106,13 @@
     height: 683px;
     padding: 0px;
     padding-top: 36px;
+    &-bg {
+      right: auto;
+      left: 50%;
+      width: 60%;
+      top: 40%;
+      transform: translate(-50%) rotateY(180deg);
+    }
     .verified-asset {
       width: 300px;
       height: 300px;

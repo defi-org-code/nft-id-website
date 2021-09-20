@@ -6,6 +6,7 @@ import api from "../../../../../services/api";
 import { isValidHttpUrl } from "../../../../../utils/input";
 import AssetAvatar from "../../AssetAvatar";
 import Error from "../../Error";
+import Input from "../../../../../components/Input";
 const Bounce = require("react-reveal/Bounce");
 
 function AssetUrl() {
@@ -42,8 +43,7 @@ function AssetUrl() {
     }
   }, [openSeaUrl, setAsset, setOwner]);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
+  const onChange = (value: string) => {
     const isValidUrl = !isValidHttpUrl(value);
     setUrlError(isValidUrl);
     setOpenSeaUrl(value);
@@ -59,7 +59,7 @@ function AssetUrl() {
       <div className="step fetch-asset">
         <AssetAvatar />
         <div className="step-content">
-          <input
+          <Input
             onChange={onChange}
             disabled={!!owner}
             value={openSeaUrl}

@@ -8,6 +8,7 @@ import api from "../../../../../services/api";
 import AssetAvatar from "../../AssetAvatar";
 import Error from "../../Error";
 import TwitterAccount from "../../../../../components/TwitterAccount";
+import Input from "../../../../../components/Input";
 const Bounce = require("react-reveal/Bounce");
 
 const createPendingRequest = async (
@@ -71,6 +72,10 @@ function Ownership() {
       sign(twitterHandle);
     }
   };
+
+  const onChange = (value: string) => {
+    setTwitterHandle(value);
+  };
   return (
     <Bounce right>
       <div
@@ -85,10 +90,10 @@ function Ownership() {
               pointerEvents: signature ? "none" : "all",
             }}
           >
-            <input
+            <Input
               value={twitterHandle}
               placeholder="Twitter Username"
-              onChange={(e) => setTwitterHandle(e.target.value)}
+              onChange={onChange}
             />
             <Button
               onClick={onClick}

@@ -8,9 +8,10 @@ const Fade = require("react-reveal/Fade");
 
 interface IProps {
   certificate: ICertificate;
+  verifyAgain: () => void;
 }
 
-function Actions({ certificate }: IProps) {
+function Actions({ certificate, verifyAgain }: IProps) {
   const [fetchingAsset, setFetchingAsset] = useState(false);
   const [fetchingAssetDone, setFetchingAssetDone] = useState(false);
   const [fetchingOwner, setFetchingOwner] = useState(false);
@@ -129,7 +130,10 @@ function Actions({ certificate }: IProps) {
           )}
           {verifyingSignature && (
             <Fade>
-              <section className="asset-proof-fetching-verifying">
+              <section
+                className="asset-proof-fetching-verifying"
+                onClick={verifyAgain}
+              >
                 <p>Verifiying siganture...</p>
                 {verifyingSignatureDone && (
                   <p className="asset-yellow">☑ Verified</p>
