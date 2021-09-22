@@ -9,7 +9,6 @@ import Button from "../../components/Button/index";
 import { routes } from "../../consts";
 import images from "../../consts/images";
 import { ICertificate } from "../../types";
-import Spinner from "../../components/Spinner";
 import VerifyAgain from "./VerifyAgain";
 interface IParams {
   tokenId?: string;
