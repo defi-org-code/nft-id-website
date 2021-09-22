@@ -1,7 +1,6 @@
 {
-  "name": "nft-id-website",
+  "name": "nft-id",
   "version": "0.1.0",
-  "homepage": "mynft.fyi",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
