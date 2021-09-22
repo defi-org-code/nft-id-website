@@ -6,7 +6,7 @@ import Asset from "./screens/Asset";
 import Verify from "./screens/Verify";
 import { routes } from "./consts";
 import analytics from "./services/analytics";
-
+import LoadFailed from "./components/LoadFailed/index";
 analytics.init();
 function App() {
   return (
@@ -17,6 +17,7 @@ function App() {
         <Route exact path={routes.home} component={Home} />
         <Route render={() => <Redirect to={routes.home} />} />
       </Switch>
+      <LoadFailed />
     </div>
   );
 }

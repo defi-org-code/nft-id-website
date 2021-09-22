@@ -22,11 +22,7 @@
     max-width: 1024px;
     width: calc(100% - 80px);
   }
-  &-empty-certificate {
-    width: 100%;
-    position: relative;
-    transform: translate(-30px);
-  }
+
   &-overlay {
     background: linear-gradient(
       242.36deg,

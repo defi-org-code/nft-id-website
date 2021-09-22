@@ -28,6 +28,9 @@ import arrow from "../assets/images/verify/arrow.svg";
 import emptyCertificate from "../assets/images/empty-certificate.png";
 import line from "../assets/images/line.svg";
 import mobileCertificateFrame from "../assets/images/mobile/certificate-frame.png";
+import metamaskLogo from "../assets/images/metamask-logo.png";
+import loadFailedFrame from "../assets/images/load-failed-frame.png";
+import notVerified from "../assets/images/not-verified.png";
 const images = {
   ActiveStepImg,
   SuccessImg,
@@ -59,6 +62,9 @@ const images = {
   emptyCertificate,
   line,
   mobileCertificateFrame,
+  metamaskLogo,
+  loadFailedFrame,
+  notVerified,
 };
 
 export default images;

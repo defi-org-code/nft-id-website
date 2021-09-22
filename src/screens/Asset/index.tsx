@@ -68,21 +68,12 @@ function Asset() {
       )}
       <div className="asset-flex" style={{ opacity: verifyAgain ? "0" : "1" }}>
         <section className="asset-overlay"></section>
-        {certificate && <Cretificate data={certificate} />}
+        <Cretificate isLoading={isLoading} certificate={certificate} />
         <div className="asset-grid">
-          {isLoading ? (
-            <div className="asset-loader">
-              <Spinner />
-            </div>
-          ) : certificate ? (
-            <Actions verifyAgain={() => {}} certificate={certificate} />
-          ) : (
-            <img
-              src={images.emptyCertificate}
-              alt="empty certificate"
-              className="asset-empty-certificate"
-            />
-          )}
+          <Actions
+            verifyAgain={() => setVerifyAgain(true)}
+            certificate={certificate}
+          />
         </div>
 
         <Button

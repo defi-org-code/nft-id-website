@@ -14,7 +14,7 @@ function Verified() {
       <div className="verified">
         <div className="verified-left">
           <Fade>
-            <Certificate data={certificate} />
+            <Certificate certificate={certificate} />
           </Fade>
           <div className="verified-proof">
             <Fade bottom>

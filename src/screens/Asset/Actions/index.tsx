@@ -7,7 +7,7 @@ import { delay } from "../../../utils";
 const Fade = require("react-reveal/Fade");
 
 interface IProps {
-  certificate: ICertificate;
+  certificate: ICertificate | null;
   verifyAgain: () => void;
 }
 
@@ -16,13 +16,10 @@ function Actions({ certificate, verifyAgain }: IProps) {
   const [fetchingAssetDone, setFetchingAssetDone] = useState(false);
   const [fetchingOwner, setFetchingOwner] = useState(false);
   const [fetchingOwnerDone, setFetchingOwnerDone] = useState(false);
-
   const [fetcingSignature, setFetcingSignature] = useState(false);
   const [fetcingSignatureDone, setFetcingSignatureDone] = useState(false);
-
   const [verifyingSignature, setVerifyingSignature] = useState(false);
   const [verifyingSignatureDone, setVerifyingSignatureDone] = useState(false);
-
   const [fetchingTweet, setFetchingTweet] = useState(false);
   const [isTweetVerified, setIsTweetVerified] = useState(false);
   const [fetchingTweetDone, setFetchingTweetDone] = useState(false);
@@ -45,7 +42,7 @@ function Actions({ certificate, verifyAgain }: IProps) {
   };
 
   const verifyTweet = async () => {
-    const tweet = await api.get(`isTweetExist/${certificate.tweet_id}`);
+    const tweet = await api.get(`isTweetExist/${certificate?.tweet_id}`);
     if (tweet && tweet.result) {
       setIsTweetVerified(true);
     }
@@ -58,12 +55,15 @@ function Actions({ certificate, verifyAgain }: IProps) {
   }, []);
 
   const openSeaUrlParams = encodeURI(
-    `${certificate.nft_contract_address}/${certificate.nft_id}`
+    `${certificate?.nft_contract_address}/${certificate?.nft_id}`
   );
 
-  const twitterUrlParams = `${certificate.twitter_handle}/status/${certificate.tweet_id}`;
+  const twitterUrlParams = `${certificate?.twitter_handle}/status/${certificate?.tweet_id}`;
 
-  const addressParam = encodeURI(certificate.owner_public_key);
+  const addressParam = certificate
+    ? encodeURI(certificate.owner_public_key)
+    : "";
+
   return certificate ? (
     <div className="asset-proof">
       <h3 className="asset-proof-title">On-Chain Proof</h3>
