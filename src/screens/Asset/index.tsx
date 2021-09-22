@@ -6,7 +6,7 @@ import api from "../../services/api";
 import Actions from "./Actions";
 import Cretificate from "../../components/Certificate";
 import Button from "../../components/Button/index";
-import { routes } from "../../consts";
+import { OPEN_SEA_ASSETS_URL, routes } from "../../consts";
 import images from "../../consts/images";
 import { ICertificate } from "../../types";
 import VerifyAgain from "./VerifyAgain";
@@ -19,7 +19,6 @@ interface IParams {
 function Asset() {
   const history = useHistory();
   const { tokenId, contractAddress, twitterHandle }: IParams = useParams();
-
   const [isLoading, setIsLoading] = useState(true);
   const [verifyAgain, setVerifyAgain] = useState(false);
   const [certificate, setCertificate] = useState<ICertificate | null>(null);
@@ -34,12 +33,13 @@ function Asset() {
     } else if (contractAddress && tokenId) {
       url = `fetchVerifiedRequest?url=${window.location.href}`;
     }
-    getOwnershipDetails(url);
+    getUserDetails(url);
   };
 
-  const getOwnershipDetails = async (url: string) => {
+  const getUserDetails = async (url: string) => {
     try {
       const res = await api.get(url);
+      console.log({ res });
       handleResult(res);
     } catch (error) {
     } finally {
@@ -47,10 +47,23 @@ function Asset() {
     }
   };
 
+  const getAssetOwner = async (contractAddress: string, nftID: string) => {
+    try {
+      const url = `extractDataFromNFTContract?openseaUrl=${encodeURIComponent(
+        `${OPEN_SEA_ASSETS_URL}/${contractAddress}/${nftID}`
+      )}`;
+      const res = await api.get(url);
+      console.log({ res });
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+
   const handleResult = (res: ICertificate) => {
     if (res.json) {
       res.twitter_user_info = JSON.parse(res.twitter_user_info);
       const data = res;
+      getAssetOwner(res.nft_contract_address, res.nft_id);
       console.log({ data });
       setCertificate(data);
     }

@@ -6,13 +6,13 @@ import Content from "./Content";
 interface IProps {
   certificate: ICertificate | null;
   isLoading?: boolean;
-  notVarified?: boolean;
+  notVerified?: boolean;
 }
 
-function Cretificate({ certificate, isLoading, notVarified }: IProps) {
+function Cretificate({ certificate, isLoading, notVerified }: IProps) {
   const className = isLoading
     ? "certificate certificate-loading"
-    : notVarified
+    : notVerified
     ? "certificate certificate-not-verified"
     : "certificate";
 
@@ -30,7 +30,7 @@ function Cretificate({ certificate, isLoading, notVarified }: IProps) {
         />
       ) : (
         <>
-          {notVarified && (
+          {notVerified && (
             <img
               src={images.notVerified}
               alt="not verified"
