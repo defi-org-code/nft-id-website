@@ -3,44 +3,52 @@ import { ICertificate } from "../../types";
 
 import Spinner from "../Spinner";
 import Content from "./Content";
+const Fade = require("react-reveal/Fade");
+
 interface IProps {
   certificate: ICertificate | null;
   isLoading?: boolean;
-  notVerified?: boolean;
+  isVerified?: boolean;
 }
 
-function Cretificate({ certificate, isLoading, notVerified }: IProps) {
+function Cretificate({ certificate, isLoading, isVerified }: IProps) {
   const className = isLoading
     ? "certificate certificate-loading"
-    : notVerified
+    : !isVerified
     ? "certificate certificate-not-verified"
     : "certificate";
 
   return (
-    <div className={className}>
-      {isLoading ? (
-        <div className="asset-loader">
-          <Spinner />
-        </div>
-      ) : !certificate ? (
-        <img
-          src={images.emptyCertificate}
-          alt="empty certificate"
-          className="certificate-empty"
-        />
-      ) : (
-        <>
-          {notVerified && (
-            <img
-              src={images.notVerified}
-              alt="not verified"
-              className="certificate-x"
-            />
-          )}
-          {certificate && <Content certificate={certificate} />}
-        </>
+    <span className="certificate-wrapper">
+      {!isLoading && !isVerified && (
+        <Fade>
+          <img
+            src={images.notVerified}
+            alt="not verified"
+            className="certificate-x"
+          />
+        </Fade>
       )}
-    </div>
+      <div className={className}>
+        {isLoading ? (
+          <div className="asset-loader">
+            <Spinner />
+          </div>
+        ) : !certificate ? (
+          <img
+            src={images.emptyCertificate}
+            alt="empty certificate"
+            className="certificate-empty"
+          />
+        ) : (
+          <>
+            {certificate && (
+              <Content certificate={certificate} isVerified={isVerified} />
+            )}
+          </>
+        )}
+      </div>
+    </span>
   );
 }
 

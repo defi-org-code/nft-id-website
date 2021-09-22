@@ -14,6 +14,7 @@ function Verify() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <div className="verify">
       <div className="verify-overlay"></div>

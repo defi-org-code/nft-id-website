@@ -10,7 +10,7 @@ interface IProps {
   certificate: ICertificate | null;
   verifyAgain: () => void;
 }
-
+const delayMilliseconds = 600;
 function Actions({ certificate, verifyAgain }: IProps) {
   const [fetchingAsset, setFetchingAsset] = useState(false);
   const [fetchingAssetDone, setFetchingAssetDone] = useState(false);
@@ -23,28 +23,32 @@ function Actions({ certificate, verifyAgain }: IProps) {
   const [fetchingTweet, setFetchingTweet] = useState(false);
   const [isTweetVerified, setIsTweetVerified] = useState(false);
   const [fetchingTweetDone, setFetchingTweetDone] = useState(false);
+
   const stateMachine = async () => {
-    await delay(1000);
     setFetchingAsset(true);
-    await delay(1000);
+    await delay(delayMilliseconds);
     setFetchingAssetDone(true);
     setFetchingOwner(true);
-    await delay(1000);
+    await delay(delayMilliseconds);
     setFetchingOwnerDone(true);
     setFetcingSignature(true);
-    await delay(1000);
+    await delay(delayMilliseconds);
     setFetcingSignatureDone(true);
     setVerifyingSignature(true);
     setVerifyingSignatureDone(true);
-    await delay(1000);
+    await delay(delayMilliseconds);
     setFetchingTweet(true);
     setFetchingTweetDone(true);
   };
 
   const verifyTweet = async () => {
-    const tweet = await api.get(`isTweetExist/${certificate?.tweet_id}`);
-    if (tweet && tweet.result) {
-      setIsTweetVerified(true);
+    try {
+      const tweet = await api.get(`isTweetExist/${certificate?.tweet_id}`);
+      if (tweet && tweet.result) {
+        setIsTweetVerified(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -117,7 +121,11 @@ function Actions({ certificate, verifyAgain }: IProps) {
           )}
           {fetcingSignature && (
             <Fade>
-              <section className="asset-proof-fetching-signature">
+              <section
+                style={{ cursor: "pointer" }}
+                className="asset-proof-fetching-signature"
+                onClick={verifyAgain}
+              >
                 <p>fetching siganture...</p>
                 {fetcingSignatureDone && (
                   <p className=" asset-yellow">
@@ -130,10 +138,7 @@ function Actions({ certificate, verifyAgain }: IProps) {
           )}
           {verifyingSignature && (
             <Fade>
-              <section
-                className="asset-proof-fetching-verifying"
-                onClick={verifyAgain}
-              >
+              <section className="asset-proof-fetching-verifying">
                 <p>Verifiying siganture...</p>
                 {verifyingSignatureDone && (
                   <p className="asset-yellow">☑ Verified</p>

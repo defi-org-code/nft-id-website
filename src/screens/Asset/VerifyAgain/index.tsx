@@ -1,21 +1,33 @@
 import { useState } from "react";
+import Web3 from "web3";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import images from "../../../consts/images";
+import { isSameAccount } from "../../../utils";
+import Error from "../../Verify/components/Error";
 import Success from "../../Verify/components/Success";
 
 interface IProps {
   signer: string;
-  twitterHandle: string;
+  json: string;
   signature: string;
   close: () => void;
+  account: string;
 }
 
-function VerifyAgain({ signer, twitterHandle, signature, close }: IProps) {
-  const [verified, setVerified] = useState(false);
-
-  const verify = () => {
-    setVerified(true);
+function VerifyAgain({ signer, json, signature, close, account }: IProps) {
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const verify = async () => {
+    const web3 = new Web3(Web3.givenProvider);
+    try {
+      const res = await web3?.eth.personal.ecRecover(json, signature);
+      if (isSameAccount(res, account)) {
+        setSuccess(true);
+      } else {
+        setError(true);
+      }
+    } catch (error) {}
   };
 
   return (
@@ -36,7 +48,7 @@ function VerifyAgain({ signer, twitterHandle, signature, close }: IProps) {
             <h5>Data that was signed</h5>
             <Input
               onChange={() => {}}
-              value={twitterHandle}
+              value={json}
               placeholder="{“twitter”:”elonmusk”}"
             />
           </div>
@@ -50,16 +62,21 @@ function VerifyAgain({ signer, twitterHandle, signature, close }: IProps) {
           </div>
           <Button
             active
-            onClick={verify}
+            onClick={error || success ? close : verify}
             content={
-              <div className="button-with-img">
-                <img src={images.MetamaskImg} alt="metamask" />
-                <p>Verify</p>
-              </div>
+              error || success ? (
+                <p>Close</p>
+              ) : (
+                <div className="button-with-img">
+                  <img src={images.MetamaskImg} alt="metamask" />
+                  <p>Verify</p>
+                </div>
+              )
             }
           />
         </form>
-        {verified && <Success text="Verification Successful" />}
+        {error && <Error text="Verification Failed" />}
+        {success && <Success text="Verification Successful" />}
       </div>
     </div>
   );

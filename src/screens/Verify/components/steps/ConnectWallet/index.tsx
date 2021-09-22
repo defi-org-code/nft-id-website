@@ -7,6 +7,8 @@ import { useSteps } from "../../../../../context/StepsContext";
 import { useWeb3 } from "../../../../../context/Web3Context";
 import { makeElipsisAddress } from "../../../../../utils/string";
 import AssetAvatar from "../../AssetAvatar";
+import { EVENTS } from "../../../../../services/analytics/consts";
+import analytics from "../../../../../services/analytics";
 const Bounce = require("react-reveal/Bounce");
 
 const checkIfOwner = (account: string, owner: string) => {
@@ -42,7 +44,11 @@ function ConnectWallet() {
             </a>
           </div>
           <Button
-            onClick={connect}
+            onClick={analytics.sendEventAndRunFunc.bind(
+              null,
+              EVENTS.connectWallet,
+              connect
+            )}
             content={
               <div className="button-with-img">
                 <img src={images.MetamaskImg} alt="metamask" />

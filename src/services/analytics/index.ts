@@ -8,12 +8,12 @@ class Analytics {
     console.log(this.isInProd);
     if (process.env.REACT_APP_AMPLITUDE && this.isInProd) {
       amplitude.getInstance().init(process.env.REACT_APP_AMPLITUDE);
-      this.sendEvent("PAGE_LOAD");
+      this.sendEvent("APP_LOADED");
     }
   }
 
   sendEvent(event: string, data?: any) {
-    console.log(event);
+    console.log({ event });
     if (this.isInProd) {
       if (!data) {
         amplitude.getInstance().logEvent(event);
@@ -24,6 +24,13 @@ class Analytics {
       console.log(event, data);
     }
   }
+
+  sendEventAndRunFunc = (event: string, callback?: () => void) => {
+    this.sendEvent(event);
+    if (callback) {
+      callback();
+    }
+  };
 }
 
 export default new Analytics();

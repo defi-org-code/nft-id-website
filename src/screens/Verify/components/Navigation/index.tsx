@@ -1,8 +1,32 @@
 import Button from "../../../../components/Button";
 import { useSteps } from "../../../../context/StepsContext";
 import analytics from "../../../../services/analytics";
+import { EVENTS } from "../../../../services/analytics/consts";
 import { steps } from "../../Data";
 const Bounce = require("react-reveal/Bounce");
+
+const sendAnalyticsEvent = (step: number) => {
+  switch (step) {
+    case 0:
+      analytics.sendEvent(EVENTS.startVerificationButton);
+      break;
+    case 1:
+      analytics.sendEvent(EVENTS.fetchNftNextStepClick);
+      break;
+    case 2:
+      analytics.sendEvent(EVENTS.connectWalletnextStepClick);
+      break;
+    case 3:
+      analytics.sendEvent(EVENTS.signWithMetamaskNextStepClick);
+      break;
+    case 4:
+      analytics.sendEvent(EVENTS.doneClick);
+      break;
+
+    default:
+      break;
+  }
+};
 
 function Navigation() {
   const { setCurrectStep, currentStep, allowNextStep, setDone } = useSteps();
@@ -17,10 +41,11 @@ function Navigation() {
     }
     window.scrollTo(0, 0);
     if (isLastStep) {
-      analytics.sendEvent("TAP_ON_DONE_AFTER_VERIFY");
+      sendAnalyticsEvent(steps.length - 1);
       return setDone(true);
     }
     if (currentStep < steps.length - 1) {
+      sendAnalyticsEvent(currentStep);
       setCurrectStep(currentStep + 1);
     }
   };

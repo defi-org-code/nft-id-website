@@ -9,6 +9,8 @@ import AssetAvatar from "../../AssetAvatar";
 import Error from "../../Error";
 import TwitterAccount from "../../../../../components/TwitterAccount";
 import Input from "../../../../../components/Input";
+import analytics from "../../../../../services/analytics";
+import { EVENTS } from "../../../../../services/analytics/consts";
 const Bounce = require("react-reveal/Bounce");
 
 const createPendingRequest = async (
@@ -41,8 +43,8 @@ function Ownership() {
   const { account, web3 } = useWeb3();
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const sign = async (twitterHandle: string) => {
-    if (!web3) return;
+  const sign = async (twitterHandle?: string) => {
+    if (!web3 || !twitterHandle) return;
     const messageToSign = { twitterHandle: twitterHandle.replace("@", "") };
     const signData = JSON.stringify(messageToSign);
     setSignData(signData);
@@ -67,12 +69,6 @@ function Ownership() {
     }
   }, [setAllowNextStep, signature]);
 
-  const onClick = () => {
-    if (twitterHandle) {
-      sign(twitterHandle);
-    }
-  };
-
   const onChange = (value: string) => {
     setTwitterHandle(value);
   };
@@ -96,7 +92,11 @@ function Ownership() {
               onChange={onChange}
             />
             <Button
-              onClick={onClick}
+              onClick={analytics.sendEventAndRunFunc.bind(
+                null,
+                EVENTS.signWithMetamaskClick,
+                sign.bind(null, twitterHandle)
+              )}
               disabled={!twitterHandle}
               active={!!twitterHandle}
               isLoading={isLoading}

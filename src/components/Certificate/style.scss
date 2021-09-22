@@ -6,8 +6,11 @@
   height: 564px;
 
   overflow: hidden;
-  padding: 0px 90px 0px 40px;
+  padding: 0px 0px 0px 40px;
   position: relative;
+  &-wrapper {
+    position: relative;
+  }
   &-loading {
     background: unset;
     padding: 0px;
@@ -19,10 +22,12 @@
     transform: translate(-2.2vw);
   }
   &-flex {
+    padding-right: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     height: 100%;
+    position: relative;
   }
   &-x {
     position: absolute;
@@ -137,6 +142,7 @@
     padding-top: 36px;
     &-flex {
       flex-direction: column;
+      padding-right: 0px;
     }
     &-bg {
       right: auto;

@@ -7,6 +7,9 @@ import { isValidHttpUrl } from "../../../../../utils/input";
 import AssetAvatar from "../../AssetAvatar";
 import Error from "../../Error";
 import Input from "../../../../../components/Input";
+import { EVENTS } from "../../../../../services/analytics/consts";
+import { OPEN_SEA_ASSETS_URL } from "../../../../../consts";
+import analytics from "../../../../../services/analytics";
 const Bounce = require("react-reveal/Bounce");
 
 function AssetUrl() {
@@ -22,7 +25,6 @@ function AssetUrl() {
   const [urlError, setUrlError] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-
   const fetchNftAsset = useCallback(async () => {
     if (!openSeaUrl) {
       return;
@@ -63,10 +65,14 @@ function AssetUrl() {
             onChange={onChange}
             disabled={!!owner}
             value={openSeaUrl}
-            placeholder="https://opensea.io/assets/0xbd3531da5cf5857e7cfaa92426877b022e612cf8/5222"
+            placeholder={`${OPEN_SEA_ASSETS_URL}/0xbd3531da5cf5857e7cfaa92426877b022e612cf8/5222`}
           />
           <Button
-            onClick={fetchNftAsset}
+            onClick={analytics.sendEventAndRunFunc.bind(
+              null,
+              EVENTS.fecthNftButtonClick,
+              fetchNftAsset
+            )}
             content={<>Fetch NFT</>}
             isLoading={loading}
             active={!isDisabled}

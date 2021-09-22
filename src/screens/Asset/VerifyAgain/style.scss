@@ -9,6 +9,11 @@
   height: 100%;
   z-index: 100;
   padding-top: 60px;
+  .step-error {
+    margin-top: 60px;
+    background: black;
+    height: 80px;
+  }
   .success {
     width: 100%;
     margin-top: 60px;
@@ -59,7 +64,7 @@
       }
       .input {
         pointer-events: none;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 1);
       }
     }
   }

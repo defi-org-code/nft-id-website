@@ -9,6 +9,8 @@ import api from "../../../../../services/api";
 import AssetAvatar from "../../AssetAvatar";
 import VerifiedAsset from "../../../../../components/VerifiedAsset";
 import Varified from "./Varified";
+import { EVENTS } from "../../../../../services/analytics/consts";
+import analytics from "../../../../../services/analytics";
 const Bounce = require("react-reveal/Bounce");
 const Fade = require("react-reveal/Fade");
 
@@ -24,11 +26,10 @@ function SendTweet() {
     name,
   } = useSteps();
   const pollInterval = useRef<any>(null);
-  const onClick = () => {
+  const sendTweet = () => {
     const params = encodeURIComponent(
       `I just claimed my NFT ownership certificate https://www.mynft.fyi/${twitterHandle}\n to prove that I own ${openSeaUrl} @mynft_fyi #mynftfyi`
     );
-
     window.open(`https://twitter.com/intent/tweet?text=${params}`);
     setVerificationPending(true);
     handlePoll();
@@ -39,6 +40,7 @@ function SendTweet() {
     try {
       const res = await api.get(url);
       if (res && res.verified_time) {
+        analytics.sendEvent(EVENTS.successfullyVerified);
         setVerificationPending(false);
         res.twitter_user_info = JSON.parse(res.twitter_user_info);
         setCertificate(res);
@@ -77,7 +79,11 @@ function SendTweet() {
             <TwitterAccount twitterHandle={twitterHandle} name={name} />
             {!verificationPending ? (
               <Button
-                onClick={onClick}
+                onClick={analytics.sendEventAndRunFunc.bind(
+                  null,
+                  EVENTS.sendTweetClick,
+                  sendTweet
+                )}
                 active={true}
                 content={
                   <div className="button-with-img">
