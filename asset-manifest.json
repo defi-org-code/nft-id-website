@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mynft.fyi/static/css/main.91662e95.chunk.css",
-    "main.js": "/mynft.fyi/static/js/main.8d215890.chunk.js",
-    "main.js.map": "/mynft.fyi/static/js/main.8d215890.chunk.js.map",
+    "main.js": "/mynft.fyi/static/js/main.da499d49.chunk.js",
+    "main.js.map": "/mynft.fyi/static/js/main.da499d49.chunk.js.map",
     "runtime-main.js": "/mynft.fyi/static/js/runtime-main.458170f1.js",
     "runtime-main.js.map": "/mynft.fyi/static/js/runtime-main.458170f1.js.map",
     "static/js/2.e559f29a.chunk.js": "/mynft.fyi/static/js/2.e559f29a.chunk.js",
@@ -49,6 +49,6 @@
     "static/js/runtime-main.458170f1.js",
     "static/js/2.e559f29a.chunk.js",
     "static/css/main.91662e95.chunk.css",
-    "static/js/main.8d215890.chunk.js"
+    "static/js/main.da499d49.chunk.js"
   ]
 }
