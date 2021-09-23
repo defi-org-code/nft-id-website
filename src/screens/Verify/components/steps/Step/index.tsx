@@ -1,4 +1,4 @@
-import { useSteps } from "../../../../../context/StepsContext";
+import { useStepsStore } from "../../../../../context/StepsContext";
 import { IStep } from "../../../../../types";
 const Fade = require("react-reveal/Fade");
 
@@ -7,7 +7,7 @@ interface IProps {
   index: number;
 }
 function Step({ step, index }: IProps) {
-  const { currentStep } = useSteps();
+  const { currentStep } = useStepsStore();
   const isActive = index === currentStep;
   const { component: Component, title } = step;
   return isActive ? (

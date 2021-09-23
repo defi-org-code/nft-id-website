@@ -84,6 +84,6 @@ const StepsProvider = ({ children }: IProps) => {
   );
 };
 
-const useSteps = () => useContext(StepsContext);
+const useStepsStore = () => useContext(StepsContext);
 
-export { useSteps, StepsProvider };
+export { useStepsStore, StepsProvider };

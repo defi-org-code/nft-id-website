@@ -4,10 +4,10 @@
   background-repeat: no-repeat;
   width: 1024px;
   height: 564px;
-
   overflow: hidden;
   padding: 0px 0px 0px 40px;
   position: relative;
+
   &-wrapper {
     position: relative;
   }
@@ -15,12 +15,7 @@
     background: unset;
     padding: 0px;
   }
-  &-empty {
-    max-width: 1024px;
-    width: calc(100% - 50px);
-    position: relative;
-    transform: translate(-2.2vw);
-  }
+
   &-flex {
     padding-right: 90px;
     display: flex;
@@ -125,11 +120,7 @@
     }
   }
 }
-@media only screen and (min-width: 1200px) {
-  .certificate-empty {
-    transform: translate(-30px);
-  }
-}
+
 @media only screen and (max-width: 950px) {
   .certificate {
     overflow: hidden;
@@ -144,6 +135,7 @@
       flex-direction: column;
       padding-right: 0px;
     }
+
     &-bg {
       right: auto;
       left: 50%;

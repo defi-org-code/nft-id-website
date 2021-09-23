@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Success from "../../Success";
 import images from "../../../../../consts/images";
-import { useSteps } from "../../../../../context/StepsContext";
+import { useStepsStore } from "../../../../../context/StepsContext";
 import { useWeb3 } from "../../../../../context/Web3Context";
 import api from "../../../../../services/api";
 import AssetAvatar from "../../AssetAvatar";
@@ -39,21 +39,24 @@ function Ownership() {
     setName,
     openSeaUrl,
     setAllowNextStep,
-  } = useSteps();
-  const { account, web3 } = useWeb3();
+  } = useStepsStore();
+  const { sign } = useWeb3();
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const sign = async (twitterHandle?: string) => {
-    if (!web3 || !twitterHandle) return;
-    const messageToSign = { twitterHandle: twitterHandle.replace("@", "") };
+
+  const createSignature = async (name?: string) => {
+    if (!name) return;
+    const messageToSign = { twitterHandle: name.replace("@", "") };
     const signData = JSON.stringify(messageToSign);
     setSignData(signData);
     setError(false);
     try {
       setIsLoading(true);
-      const res = await web3.eth.personal.sign(signData, account, "");
-      setName(await createPendingRequest(res, signData, openSeaUrl));
-      setSignature(res);
+      const res = await sign(signData);
+      if (res) {
+        setName(await createPendingRequest(res, signData, openSeaUrl));
+        setSignature(res);
+      }
     } catch (error) {
       setError(true);
     } finally {
@@ -95,7 +98,7 @@ function Ownership() {
               onClick={analytics.sendEventAndRunFunc.bind(
                 null,
                 EVENTS.signWithMetamaskClick,
-                sign.bind(null, twitterHandle)
+                createSignature.bind(null, twitterHandle)
               )}
               disabled={!twitterHandle}
               active={!!twitterHandle}

@@ -4,7 +4,7 @@ import Button from "../../../../../components/Button";
 import TwitterAccount from "../../../../../components/TwitterAccount";
 import animations from "../../../../../consts/animations";
 import images from "../../../../../consts/images";
-import { useSteps } from "../../../../../context/StepsContext";
+import { useStepsStore } from "../../../../../context/StepsContext";
 import api from "../../../../../services/api";
 import AssetAvatar from "../../AssetAvatar";
 import VerifiedAsset from "../../../../../components/VerifiedAsset";
@@ -24,7 +24,7 @@ function SendTweet() {
     setVerificationPending,
     setAllowNextStep,
     name,
-  } = useSteps();
+  } = useStepsStore();
   const pollInterval = useRef<any>(null);
   const sendTweet = () => {
     const params = encodeURIComponent(
@@ -37,10 +37,11 @@ function SendTweet() {
 
   const fetchVerificationRequest = async () => {
     const url = `fetchVerifiedRequest?url=${openSeaUrl}`;
+
     try {
       const res = await api.get(url);
       if (res && res.verified_time) {
-        analytics.sendEvent(EVENTS.successfullyVerified);
+        analytics.sendEvent(EVENTS.verifyPagesuccessfullyVerified);
         setVerificationPending(false);
         res.twitter_user_info = JSON.parse(res.twitter_user_info);
         setCertificate(res);
@@ -50,6 +51,7 @@ function SendTweet() {
   };
 
   const handlePoll = () => {
+    analytics.sendEvent(EVENTS.verifyPagePendingTriggerdAfterTSendingweet);
     pollInterval.current = setInterval(() => {
       fetchVerificationRequest().then();
     }, 5000);

@@ -1,8 +1,10 @@
 import { useState } from "react";
-import Web3 from "web3";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
 import images from "../../../consts/images";
+import { useWeb3 } from "../../../context/Web3Context";
+import analytics from "../../../services/analytics";
+import { EVENTS } from "../../../services/analytics/consts";
 import { isSameAccount } from "../../../utils";
 import Error from "../../Verify/components/Error";
 import Success from "../../Verify/components/Success";
@@ -18,10 +20,12 @@ interface IProps {
 function VerifyAgain({ signer, json, signature, close, account }: IProps) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
-  const verify = async () => {
-    const web3 = new Web3(Web3.givenProvider);
+  const { recover } = useWeb3();
+
+  const recoverSignature = async () => {
     try {
-      const res = await web3?.eth.personal.ecRecover(json, signature);
+      const res = await recover(json, signature);
+      if (!res) return;
       if (isSameAccount(res, account)) {
         setSuccess(true);
       } else {
@@ -62,7 +66,15 @@ function VerifyAgain({ signer, json, signature, close, account }: IProps) {
           </div>
           <Button
             active
-            onClick={error || success ? close : verify}
+            onClick={
+              error || success
+                ? close
+                : analytics.sendEventAndRunFunc.bind(
+                    null,
+                    EVENTS.verifySignatureClicked,
+                    recoverSignature
+                  )
+            }
             content={
               error || success ? (
                 <p>Close</p>

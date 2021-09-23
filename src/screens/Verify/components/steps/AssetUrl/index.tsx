@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Success from "../../Success";
-import { useSteps } from "../../../../../context/StepsContext";
+import { useStepsStore } from "../../../../../context/StepsContext";
 import api from "../../../../../services/api";
 import { isValidHttpUrl } from "../../../../../utils/input";
 import AssetAvatar from "../../AssetAvatar";
@@ -20,7 +20,7 @@ function AssetUrl() {
     setAllowNextStep,
     owner,
     openSeaUrl,
-  } = useSteps();
+  } = useStepsStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [urlError, setUrlError] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
@@ -35,10 +35,12 @@ function AssetUrl() {
     try {
       const res = await api.get(assetUrl);
       let image = res.asset;
+
       setAsset(image);
       setOwner(res.owner);
       setSuccess(true);
     } catch (error) {
+      analytics.sendEvent(EVENTS.fetchNftFailed);
       setError(true);
     } finally {
       setLoading(false);

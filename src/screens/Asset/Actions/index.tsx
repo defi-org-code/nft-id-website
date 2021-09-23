@@ -1,6 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import CodeFrame from "../../../components/CodeFrame";
+import analytics from "../../../services/analytics";
+import { EVENTS } from "../../../services/analytics/consts";
 import api from "../../../services/api";
 import { ICertificate } from "../../../types";
 import { delay } from "../../../utils";
@@ -124,7 +126,11 @@ function Actions({ certificate, verifyAgain }: IProps) {
               <section
                 style={{ cursor: "pointer" }}
                 className="asset-proof-fetching-signature"
-                onClick={verifyAgain}
+                onClick={analytics.sendEventAndRunFunc.bind(
+                  null,
+                  EVENTS.openVerifySignatureModalClicked,
+                  verifyAgain
+                )}
               >
                 <p>fetching siganture...</p>
                 {fetcingSignatureDone && (

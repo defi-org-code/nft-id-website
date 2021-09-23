@@ -3,7 +3,7 @@ import Button from "../../../../../components/Button";
 import Error from "../../Error";
 import Success from "../../Success";
 import images from "../../../../../consts/images";
-import { useSteps } from "../../../../../context/StepsContext";
+import { useStepsStore } from "../../../../../context/StepsContext";
 import { useWeb3 } from "../../../../../context/Web3Context";
 import { makeElipsisAddress } from "../../../../../utils/string";
 import AssetAvatar from "../../AssetAvatar";
@@ -20,7 +20,7 @@ const checkIfOwner = (account: string, owner: string) => {
 };
 
 function ConnectWallet() {
-  const { owner, setAllowNextStep } = useSteps();
+  const { owner, setAllowNextStep } = useStepsStore();
   const { connect, account } = useWeb3();
   const isOwner = checkIfOwner(account, owner);
   useEffect(() => {

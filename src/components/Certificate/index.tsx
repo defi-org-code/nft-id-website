@@ -1,6 +1,5 @@
 import images from "../../consts/images";
 import { ICertificate } from "../../types";
-
 import Spinner from "../Spinner";
 import Content from "./Content";
 const Fade = require("react-reveal/Fade");
@@ -16,11 +15,11 @@ function Cretificate({ certificate, isLoading, isVerified }: IProps) {
     ? "certificate certificate-loading"
     : !isVerified
     ? "certificate certificate-not-verified"
-    : "certificate";
+    : "certificate certificate";
 
   return (
     <span className="certificate-wrapper">
-      {!isLoading && !isVerified && (
+      {!isLoading && !isVerified && certificate && (
         <Fade>
           <img
             src={images.notVerified}
@@ -34,12 +33,6 @@ function Cretificate({ certificate, isLoading, isVerified }: IProps) {
           <div className="asset-loader">
             <Spinner />
           </div>
-        ) : !certificate ? (
-          <img
-            src={images.emptyCertificate}
-            alt="empty certificate"
-            className="certificate-empty"
-          />
         ) : (
           <>
             {certificate && (

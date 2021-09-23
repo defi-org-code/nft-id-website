@@ -1,14 +1,14 @@
 import Certificate from "../../../../components/Certificate/index";
 import Image from "../../../../components/Image";
 import images from "../../../../consts/images";
-import { useSteps } from "../../../../context/StepsContext";
+import { useStepsStore } from "../../../../context/StepsContext";
 import { makeElipsisAddress } from "../../../../utils/string";
 import Url from "./Url";
 const Bounce = require("react-reveal/Bounce");
 const Fade = require("react-reveal/Fade");
 
 function Verified() {
-  const { certificate } = useSteps();
+  const { certificate } = useStepsStore();
   return certificate ? (
     <Bounce right>
       <div className="verified">

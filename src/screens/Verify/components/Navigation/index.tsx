@@ -1,5 +1,5 @@
 import Button from "../../../../components/Button";
-import { useSteps } from "../../../../context/StepsContext";
+import { useStepsStore } from "../../../../context/StepsContext";
 import analytics from "../../../../services/analytics";
 import { EVENTS } from "../../../../services/analytics/consts";
 import { steps } from "../../Data";
@@ -29,7 +29,12 @@ const sendAnalyticsEvent = (step: number) => {
 };
 
 function Navigation() {
-  const { setCurrectStep, currentStep, allowNextStep, setDone } = useSteps();
+  const {
+    setCurrectStep,
+    currentStep,
+    allowNextStep,
+    setDone,
+  } = useStepsStore();
   const disabled = !allowNextStep;
 
   const isLastStep = steps.length - 1 === currentStep;

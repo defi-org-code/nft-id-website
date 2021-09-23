@@ -20,6 +20,14 @@
       transform: translate(-50%, -50%) scale(0.7);
     }
   }
+  #empty-certificate {
+    width: calc(100% - 70px);
+    min-width: 340px;
+    height: auto;
+    position: relative;
+    transform: translate(-3vw);
+  }
+
   .verify-btn {
     margin-top: 100px;
   }
@@ -53,10 +61,11 @@
   }
 }
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (min-width: 1200px) {
   .asset {
-    .certificate {
-      zoom: 0.78;
+    #empty-certificate {
+      transform: translate(-30px);
+      width: 1000px;
     }
   }
 }
@@ -64,10 +73,6 @@
 @media only screen and (max-width: 900px) {
   .asset {
     padding-top: 30px;
-
-    &-empty-certificate {
-      transform: translate(-2.6vw);
-    }
 
     &-proof {
       width: calc(100% - 40px);

@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import Button from "../../components/Button";
 import images from "../../consts/images";
 import { useHistory } from "react-router-dom";
@@ -10,10 +10,10 @@ const Bounce = require("react-reveal/Bounce");
 function Home() {
   const history = useHistory();
 
-  const onClick = () => {
-    analytics.sendEvent(EVENTS.verifyAssetButtonClick);
-    history.push(routes.verify);
-  };
+  useEffect(() => {
+    analytics.sendEvent(EVENTS.homePageLoad);
+  }, []);
+
   return (
     <div className="home">
       <img src={images.homeBG} alt="background" className="home-bg" />
@@ -27,7 +27,11 @@ function Home() {
             <h3>Prove it !</h3>
             <Button
               content={<p>Verify your asset now</p>}
-              onClick={onClick}
+              onClick={analytics.sendEventAndRunFunc.bind(
+                null,
+                EVENTS.verifyAssetFromHomePageButtonClick,
+                history.push.bind(null, routes.verify)
+              )}
               active={true}
             />
           </div>

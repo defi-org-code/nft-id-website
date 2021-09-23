@@ -1,5 +1,5 @@
 import images from "../../consts/images";
-import { useSteps } from "../../context/StepsContext";
+import { useStepsStore } from "../../context/StepsContext";
 import { IStep } from "../../types";
 import Navigation from "./components/Navigation";
 import Verified from "./components/Verified";
@@ -7,12 +7,15 @@ import Step from "./components/steps/Step";
 import StepsProgress from "./components/StepsProgress";
 import { steps } from "./Data";
 import { useEffect } from "react";
+import analytics from "../../services/analytics";
+import { EVENTS } from "../../services/analytics/consts";
 
 function Verify() {
-  const { done } = useSteps();
+  const { done } = useStepsStore();
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    analytics.sendEvent(EVENTS.verifyPageLoaded);
   }, []);
 
   return (

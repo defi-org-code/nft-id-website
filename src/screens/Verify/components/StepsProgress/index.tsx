@@ -1,5 +1,5 @@
 import images from "../../../../consts/images";
-import { useSteps } from "../../../../context/StepsContext";
+import { useStepsStore } from "../../../../context/StepsContext";
 import { IStep } from "../../../../types";
 const Bounce = require("react-reveal/Bounce");
 
@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const StepsProgress = ({ steps }: IProps) => {
-  const { currentStep } = useSteps();
+  const { currentStep } = useStepsStore();
 
   return (
     <Bounce top>

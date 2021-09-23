@@ -1,9 +1,9 @@
 import Image from "../../../../components/Image";
 import images from "../../../../consts/images";
-import { useSteps } from "../../../../context/StepsContext";
+import { useStepsStore } from "../../../../context/StepsContext";
 
 const AssetAvatar = () => {
-  const { asset } = useSteps();
+  const { asset } = useStepsStore();
   return (
     <div className="step-asset">
       {asset ? (
