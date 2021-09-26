@@ -4,13 +4,12 @@ import images from "../../../../consts/images";
 import { useStepsStore } from "../../../../context/StepsContext";
 import { makeElipsisAddress } from "../../../../utils/string";
 import Url from "./Url";
-const Bounce = require("react-reveal/Bounce");
 const Fade = require("react-reveal/Fade");
 
 function Verified() {
   const { certificate } = useStepsStore();
   return certificate ? (
-    <Bounce right>
+    <Fade>
       <div className="verified">
         <div className="verified-left">
           <Fade>
@@ -119,7 +118,7 @@ function Verified() {
           </div>
         </Fade>
       </div>
-    </Bounce>
+    </Fade>
   ) : null;
 }
 

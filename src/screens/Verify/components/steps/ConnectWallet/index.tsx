@@ -47,7 +47,7 @@ function ConnectWallet() {
             onClick={analytics.sendEventAndRunFunc.bind(
               null,
               EVENTS.connectWallet,
-              connect
+              !account ? connect : undefined
             )}
             content={
               <div className="button-with-img">

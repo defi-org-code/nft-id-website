@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Success from "../../Success";
 import { useStepsStore } from "../../../../../context/StepsContext";
@@ -20,12 +20,13 @@ function AssetUrl() {
     setAllowNextStep,
     owner,
     openSeaUrl,
+    asset,
   } = useStepsStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [urlError, setUrlError] = useState<boolean>(false);
   const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const fetchNftAsset = useCallback(async () => {
+  const fetchNftAsset = async () => {
     if (!openSeaUrl) {
       return;
     }
@@ -34,9 +35,7 @@ function AssetUrl() {
     const assetUrl = `extractDataFromNFTContract?openseaUrl=${openSeaUrl}`;
     try {
       const res = await api.get(assetUrl);
-      let image = res.asset;
-
-      setAsset(image);
+      setAsset(res.asset);
       setOwner(res.owner);
       setSuccess(true);
     } catch (error) {
@@ -45,7 +44,7 @@ function AssetUrl() {
     } finally {
       setLoading(false);
     }
-  }, [openSeaUrl, setAsset, setOwner]);
+  };
 
   const onChange = (value: string) => {
     const isValidUrl = !isValidHttpUrl(value);
@@ -77,8 +76,8 @@ function AssetUrl() {
             )}
             content={<>Fetch NFT</>}
             isLoading={loading}
-            active={!isDisabled}
-            disabled={isDisabled}
+            active={!isDisabled && !asset}
+            disabled={isDisabled || !!asset}
           />
           {success && <Success text="Successfully Fetched!" />}
           {error && <Error text="Invalid Asset Url" />}

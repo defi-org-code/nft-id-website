@@ -132,7 +132,7 @@ function Asset() {
               />
             )}
 
-            {isVerified && (
+            {isVerified && certificate && (
               <Actions
                 verifyAgain={() => setVerifyAgain(true)}
                 certificate={certificate}

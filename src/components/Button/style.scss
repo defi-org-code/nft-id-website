@@ -28,9 +28,15 @@
       #7e3bd0 39.27%,
       #f0553b 91.59%
     );
+    transition: 0.2s all;
     filter: blur(21px);
     width: 80px;
     height: 61px;
+  }
+  &:hover {
+    &::after {
+      opacity: 0;
+    }
   }
   section {
     position: relative;

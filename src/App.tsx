@@ -1,4 +1,3 @@
-import React from "react";
 import "./styles/index.scss";
 import { Switch, Route, Redirect } from "react-router-dom";
 import Home from "./screens/Home";
