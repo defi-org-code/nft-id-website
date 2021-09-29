@@ -1,5 +1,6 @@
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import { isMobile } from "react-device-detect";
 
 export const getWeb3ModalInstance = () => {
   const providerOptions = {
@@ -17,4 +18,8 @@ export const getWeb3ModalInstance = () => {
   });
 
   return web3Modal;
+};
+
+export const mobileWithoutMetamask = () => {
+  return isMobile && !(window as any).ethereum;
 };

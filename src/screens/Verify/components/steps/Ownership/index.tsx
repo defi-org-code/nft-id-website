@@ -11,6 +11,7 @@ import TwitterAccount from "../../../../../components/TwitterAccount";
 import Input from "../../../../../components/Input";
 import analytics from "../../../../../services/analytics";
 import { EVENTS } from "../../../../../services/analytics/consts";
+import { mobileWithoutMetamask } from "../../../../../utils/web3";
 const Bounce = require("react-reveal/Bounce");
 
 const createPendingRequest = async (
@@ -45,7 +46,7 @@ function Ownership() {
   const [isLoading, setIsLoading] = useState(false);
 
   const createSignature = async (name?: string) => {
-    if (!name) return;
+    if (!name || mobileWithoutMetamask()) return;
     const messageToSign = { twitterHandle: name.replace("@", "") };
     const signData = JSON.stringify(messageToSign);
     setSignData(signData);

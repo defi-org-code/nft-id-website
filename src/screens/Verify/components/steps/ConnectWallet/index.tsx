@@ -9,6 +9,7 @@ import { makeElipsisAddress } from "../../../../../utils/string";
 import AssetAvatar from "../../AssetAvatar";
 import { EVENTS } from "../../../../../services/analytics/consts";
 import analytics from "../../../../../services/analytics";
+import { mobileWithoutMetamask } from "../../../../../utils/web3";
 const Bounce = require("react-reveal/Bounce");
 
 const checkIfOwner = (account: string, owner: string) => {
@@ -47,7 +48,7 @@ function ConnectWallet() {
             onClick={analytics.sendEventAndRunFunc.bind(
               null,
               EVENTS.connectWallet,
-              !account ? connect : undefined
+              !account && !mobileWithoutMetamask() ? connect : undefined
             )}
             content={
               <div className="button-with-img">

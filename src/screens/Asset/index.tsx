@@ -13,6 +13,7 @@ import { isSameAccount } from "../../utils";
 import ErrorHandler from "../../components/ErrorHandler";
 import analytics from "../../services/analytics";
 import { EVENTS } from "../../services/analytics/consts";
+import { mobileWithoutMetamask } from "../../utils/web3";
 
 interface IParams {
   tokenId?: string;
@@ -22,6 +23,7 @@ interface IParams {
 
 function Asset() {
   const history = useHistory();
+
   const { tokenId, contractAddress, twitterHandle }: IParams = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [verifyAgain, setVerifyAgain] = useState(false);
@@ -132,7 +134,9 @@ function Asset() {
 
           {isVerified && certificate && (
             <Actions
-              verifyAgain={() => setVerifyAgain(true)}
+              verifyAgain={() =>
+                !mobileWithoutMetamask() ? setVerifyAgain(true) : () => {}
+              }
               certificate={certificate}
             />
           )}
