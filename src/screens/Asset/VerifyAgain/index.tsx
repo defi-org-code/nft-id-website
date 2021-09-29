@@ -21,10 +21,14 @@ function VerifyAgain({ signer, json, signature, close, account }: IProps) {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   const { recover } = useWeb3();
+  const [jsonValue, setJsonValue] = useState(json);
+  const [signatureValue, setSignatureValue] = useState(signature);
 
   const recoverSignature = async () => {
     try {
-      const res = await recover(json, signature);
+      setError(false);
+      setSuccess(false);
+      const res = await recover(jsonValue, signatureValue);
       if (!res) return;
       if (isSameAccount(res, account)) {
         setSuccess(true);
@@ -51,39 +55,31 @@ function VerifyAgain({ signer, json, signature, close, account }: IProps) {
           <div className="verify-again-form-section">
             <h5>Data that was signed</h5>
             <Input
-              onChange={() => {}}
-              value={json}
+              onChange={setJsonValue}
+              value={jsonValue}
               placeholder="{“twitter”:”elonmusk”}"
             />
           </div>
           <div className="verify-again-form-section">
             <h5>Signature</h5>
             <Input
-              onChange={() => {}}
+              onChange={setSignatureValue}
               value={signature}
               placeholder="0x083A64399f8025C19fFC428880xC81bD599a66dA6dcc3A64399f8025C19fFC42888..."
             />
           </div>
           <Button
             active
-            onClick={
-              error || success
-                ? close
-                : analytics.sendEventAndRunFunc.bind(
-                    null,
-                    EVENTS.verifySignatureClicked,
-                    recoverSignature
-                  )
-            }
+            onClick={analytics.sendEventAndRunFunc.bind(
+              null,
+              EVENTS.verifySignatureClicked,
+              recoverSignature
+            )}
             content={
-              error || success ? (
-                <p>Close</p>
-              ) : (
-                <div className="button-with-img">
-                  <img src={images.MetamaskImg} alt="metamask" />
-                  <p>Verify</p>
-                </div>
-              )
+              <div className="button-with-img">
+                <img src={images.MetamaskImg} alt="metamask" />
+                <p>Verify</p>
+              </div>
             }
           />
         </form>
