@@ -13,7 +13,6 @@ import { isSameAccount } from "../../utils";
 import ErrorHandler from "../../components/ErrorHandler";
 import analytics from "../../services/analytics";
 import { EVENTS } from "../../services/analytics/consts";
-const Fade = require("react-reveal/Fade");
 
 interface IParams {
   tokenId?: string;
@@ -95,74 +94,72 @@ function Asset() {
   const showVerifyModal = certificate && verifyAgain;
 
   return (
-    <Fade>
-      <div className="asset">
-        <ErrorHandler
-          content={<h5>Something went wrong...</h5>}
-          buttonText="Try again"
-          isError={error}
-          retry={retry}
+    <div className="asset">
+      <ErrorHandler
+        content={<h5>Something went wrong...</h5>}
+        buttonText="Try again"
+        isError={error}
+        retry={retry}
+      >
+        {showVerifyModal && (
+          <VerifyAgain
+            close={() => setVerifyAgain(false)}
+            signer={certificate.owner_public_key}
+            json={certificate.json}
+            signature={certificate.signature}
+            account={certificate.owner_public_key}
+          />
+        )}
+        <div
+          className="asset-flex"
+          style={{ opacity: verifyAgain ? "0" : "1" }}
         >
-          {showVerifyModal && (
-            <VerifyAgain
-              close={() => setVerifyAgain(false)}
-              signer={certificate.owner_public_key}
-              json={certificate.json}
-              signature={certificate.signature}
-              account={certificate.owner_public_key}
+          <section className="asset-overlay"></section>
+
+          {emptyCertificate ? (
+            <img
+              src={images.emptyCertificate}
+              alt="empty certificate"
+              id="empty-certificate"
+            />
+          ) : (
+            <Cretificate
+              isLoading={isLoading}
+              certificate={certificate}
+              isVerified={isVerified}
             />
           )}
-          <div
-            className="asset-flex"
-            style={{ opacity: verifyAgain ? "0" : "1" }}
+
+          {isVerified && certificate && (
+            <Actions
+              verifyAgain={() => setVerifyAgain(true)}
+              certificate={certificate}
+            />
+          )}
+
+          <span
+            className="verify-btn"
+            style={{ marginTop: !isLoading && !certificate ? "20px" : "" }}
           >
-            <section className="asset-overlay"></section>
-
-            {emptyCertificate ? (
-              <img
-                src={images.emptyCertificate}
-                alt="empty certificate"
-                id="empty-certificate"
-              />
-            ) : (
-              <Cretificate
-                isLoading={isLoading}
-                certificate={certificate}
-                isVerified={isVerified}
-              />
-            )}
-
-            {isVerified && certificate && (
-              <Actions
-                verifyAgain={() => setVerifyAgain(true)}
-                certificate={certificate}
-              />
-            )}
-
-            <span
-              className="verify-btn"
-              style={{ marginTop: !isLoading && !certificate ? "20px" : "" }}
-            >
-              <Button
-                onClick={analytics.sendEventAndRunFunc.bind(
-                  null,
-                  EVENTS.verifyAssetFromCertificatePageButtonClick,
-                  history.push.bind(null, routes.verify)
-                )}
-                disabled={isLoading}
-                active={!isLoading}
-                content={
-                  <div className="button-with-img">
-                    <img src={images.MetamaskImg} alt="metamask" />
-                    <p>Verify your own asset</p>
-                  </div>
-                }
-              />
-            </span>
-          </div>
-        </ErrorHandler>
-      </div>
-    </Fade>
+            <Button
+              onClick={analytics.sendEventAndRunFunc.bind(
+                null,
+                EVENTS.verifyAssetFromCertificatePageButtonClick,
+                history.push.bind(null, routes.verify)
+              )}
+              disabled={isLoading}
+              active={!isLoading}
+              content={
+                <div className="button-with-img">
+                  <img src={images.MetamaskImg} alt="metamask" />
+                  <p>Verify your own asset</p>
+                </div>
+              }
+            />
+          </span>
+        </div>
+      </ErrorHandler>
+    </div>
   );
 }
 
