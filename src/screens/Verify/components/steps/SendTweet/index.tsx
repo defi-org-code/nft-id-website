@@ -84,6 +84,7 @@ function SendTweet() {
                 onClick={analytics.sendEventAndRunFunc.bind(
                   null,
                   EVENTS.sendTweetClick,
+                  null,
                   sendTweet
                 )}
                 active={true}

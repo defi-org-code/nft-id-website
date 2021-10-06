@@ -57,6 +57,7 @@ function Ownership() {
       if (res) {
         setName(await createPendingRequest(res, signData, openSeaUrl));
         setSignature(res);
+        analytics.sendEvent(EVENTS.successfullySigndWithMetamask);
       }
     } catch (error) {
       setError(true);
@@ -74,7 +75,8 @@ function Ownership() {
   }, [setAllowNextStep, signature]);
 
   const onChange = (value: string) => {
-    setTwitterHandle(value);
+    const val = value.replaceAll("@", "");
+    setTwitterHandle(val);
   };
   return (
     <Bounce right>
@@ -99,6 +101,7 @@ function Ownership() {
               onClick={analytics.sendEventAndRunFunc.bind(
                 null,
                 EVENTS.signWithMetamaskClick,
+                null,
                 createSignature.bind(null, twitterHandle)
               )}
               disabled={!twitterHandle}

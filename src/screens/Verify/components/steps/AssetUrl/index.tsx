@@ -72,6 +72,7 @@ function AssetUrl() {
             onClick={analytics.sendEventAndRunFunc.bind(
               null,
               EVENTS.fecthNftButtonClick,
+              { openSeaUrl },
               fetchNftAsset
             )}
             content={<>Fetch NFT</>}

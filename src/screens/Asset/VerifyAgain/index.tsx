@@ -73,6 +73,7 @@ function VerifyAgain({ signer, json, signature, close, account }: IProps) {
             onClick={analytics.sendEventAndRunFunc.bind(
               null,
               EVENTS.verifySignatureClicked,
+              null,
               recoverSignature
             )}
             content={

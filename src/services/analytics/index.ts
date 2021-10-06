@@ -23,8 +23,8 @@ class Analytics {
     }
   }
 
-  sendEventAndRunFunc = (event: string, callback?: () => void) => {
-    this.sendEvent(event);
+  sendEventAndRunFunc = (event: string, data?: any, callback?: () => void) => {
+    this.sendEvent(event, data);
     if (callback) {
       callback();
     }

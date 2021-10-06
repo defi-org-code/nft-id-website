@@ -149,6 +149,7 @@ function Asset() {
               onClick={analytics.sendEventAndRunFunc.bind(
                 null,
                 EVENTS.verifyAssetFromCertificatePageButtonClick,
+                null,
                 history.push.bind(null, routes.verify)
               )}
               disabled={isLoading}

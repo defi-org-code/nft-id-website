@@ -16,7 +16,7 @@ function LoadFailed() {
             <h3>Failed to Load</h3>
             <p>
               Please open it from the <strong>Metamask Browser</strong> for a
-              better experience
+              better experience or open on Desktop with metamask
             </p>
             <img
               className="load-failed-content-img"

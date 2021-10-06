@@ -30,6 +30,7 @@ function Home() {
               onClick={analytics.sendEventAndRunFunc.bind(
                 null,
                 EVENTS.verifyAssetFromHomePageButtonClick,
+                null,
                 history.push.bind(null, routes.verify)
               )}
               active={true}

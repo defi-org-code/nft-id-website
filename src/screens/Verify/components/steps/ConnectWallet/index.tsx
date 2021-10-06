@@ -23,10 +23,17 @@ const checkIfOwner = (account: string, owner: string) => {
 function ConnectWallet() {
   const { owner, setAllowNextStep } = useStepsStore();
   const { connect, account } = useWeb3();
+
   const isOwner = checkIfOwner(account, owner);
   useEffect(() => {
     setAllowNextStep(isOwner);
   }, [isOwner, setAllowNextStep]);
+
+  useEffect(() => {
+    if (account) {
+      analytics.sendEvent(EVENTS.connectedSuccessfullyWallet);
+    }
+  }, [account]);
 
   return (
     <Bounce right>
@@ -48,6 +55,7 @@ function ConnectWallet() {
             onClick={analytics.sendEventAndRunFunc.bind(
               null,
               EVENTS.connectWallet,
+              null,
               !account && !mobileWithoutMetamask() ? connect : undefined
             )}
             content={

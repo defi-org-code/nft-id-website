@@ -120,6 +120,7 @@ function Actions({ certificate, verifyAgain }: IProps) {
                       onClick={analytics.sendEventAndRunFunc.bind(
                         null,
                         EVENTS.openVerifySignatureModalClicked,
+                        null,
                         verifyAgain
                       )}
                     >{` ${certificate.signature}`}</span>

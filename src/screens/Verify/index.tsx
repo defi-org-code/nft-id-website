@@ -9,6 +9,7 @@ import { steps } from "./Data";
 import { useEffect } from "react";
 import analytics from "../../services/analytics";
 import { EVENTS } from "../../services/analytics/consts";
+import LoadFailed from "../../components/LoadFailed";
 
 function Verify() {
   const { done } = useStepsStore();
@@ -20,6 +21,7 @@ function Verify() {
 
   return (
     <div className="verify">
+      <LoadFailed />
       <div className="verify-overlay"></div>
       <img src={images.StepsBg} alt="background" className="verify-bg" />
       <div className="verify-content">
