@@ -21,6 +21,12 @@ interface IParams {
   twitterHandle?: string;
 }
 
+const normalizeTwitterHandle = (twitterHandle: string) => {
+  if (twitterHandle.indexOf("?") > -1) {
+    return twitterHandle.split("?")[0];
+  }
+  return twitterHandle;
+};
 function Asset() {
   const history = useHistory();
 
@@ -38,7 +44,9 @@ function Asset() {
   const getUser = () => {
     let url = "";
     if (twitterHandle) {
-      url = `fetchVerifiedRequest?twitterHandle=${twitterHandle}`;
+      url = `fetchVerifiedRequest?twitterHandle=${normalizeTwitterHandle(
+        twitterHandle
+      )}`;
     } else if (contractAddress && tokenId) {
       url = `fetchVerifiedRequest?url=${window.location.href}`;
     }
