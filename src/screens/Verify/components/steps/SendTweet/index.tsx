@@ -28,7 +28,7 @@ function SendTweet() {
   const pollInterval = useRef<any>(null);
   const sendTweet = () => {
     const params = encodeURIComponent(
-      `I just claimed my NFT certificate for owning ${openSeaUrl} @mynft_fyi #mynftfyi\n\nCheck out my certificate: https://www.mynft.fyi/${twitterHandle}?utm_source=certification_tweet 👇`
+      `I just claimed my NFT certificate for owning ${openSeaUrl} @mynft_fyi #mynftfyi\n\nCheck out my certificate: https://www.mynft.fyi/${twitterHandle} 👇`
     );
     window.open(`https://twitter.com/intent/tweet?text=${params}`);
     setVerificationPending(true);
