@@ -12,6 +12,13 @@ import { OPEN_SEA_ASSETS_URL } from "../../../../../consts";
 import analytics from "../../../../../services/analytics";
 const Bounce = require("react-reveal/Bounce");
 
+const normalizeURL = (url: string): string => {
+  if (url[url.length - 1] === "/") {
+    return url.slice(0, -1);
+  }
+  return url;
+};
+
 function AssetUrl() {
   const {
     setOpenSeaUrl,
@@ -30,9 +37,10 @@ function AssetUrl() {
     if (!openSeaUrl) {
       return;
     }
+    const url = normalizeURL(openSeaUrl);
     setError(false);
     setLoading(true);
-    const assetUrl = `extractDataFromNFTContract?openseaUrl=${openSeaUrl}`;
+    const assetUrl = `extractDataFromNFTContract?openseaUrl=${url}`;
     try {
       const res = await api.get(assetUrl);
       setAsset(res.asset);
