@@ -48,7 +48,8 @@ function Asset() {
         twitterHandle
       )}`;
     } else if (contractAddress && tokenId) {
-      url = `fetchVerifiedRequest?url=${window.location.href}`;
+      const params = `${window.location.origin}/${contractAddress}/${tokenId}`;
+      url = `fetchVerifiedRequest?url=${params}`;
     }
     fetchCertificate(url);
   };
