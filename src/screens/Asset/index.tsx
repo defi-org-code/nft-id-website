@@ -33,7 +33,7 @@ function Asset() {
   const { tokenId, contractAddress, twitterHandle }: IParams = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [verifyAgain, setVerifyAgain] = useState(false);
-  const [isVerified, setIsVerified] = useState(false);
+  const [isVerified, setIsVerified] = useState(true);
   const [certificate, setCertificate] = useState<ICertificate | null>(null);
   const [error, setError] = useState(false);
   useEffect(() => {
@@ -66,6 +66,7 @@ function Asset() {
           res.owner_public_key
         );
         setCertificate(data);
+        setIsLoading(false);
       } else {
         setIsLoading(false);
       }
@@ -91,8 +92,6 @@ function Asset() {
     } catch (error) {
       setError(true);
       analytics.sendEvent(EVENTS.assetOwnerFetchFailed);
-    } finally {
-      setIsLoading(false);
     }
   };
 
