@@ -83,12 +83,10 @@ function Asset() {
     account: string
   ) => {
     try {
-      const url = `extractDataFromNFTContract?openseaUrl=${encodeURIComponent(
-        `${OPEN_SEA_ASSETS_URL}/${contractAddress}/${nftId}`
-      )}`;
-
+      const openseaUrl = `${OPEN_SEA_ASSETS_URL}/${contractAddress}/${nftId}`;
+      const url = `extractOwnerFromNFTContract?openseaUrl=${openseaUrl}&ownerAddress=${account}`;
       const res = await api.get(url);
-      setIsVerified(isSameAccount(res.owner, account));
+      setIsVerified(isSameAccount(res, account));
     } catch (error) {
       setError(true);
       analytics.sendEvent(EVENTS.assetOwnerFetchFailed);

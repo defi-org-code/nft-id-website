@@ -23,7 +23,6 @@ function AssetUrl() {
   const {
     setOpenSeaUrl,
     setAsset,
-    setOwner,
     setAllowNextStep,
     owner,
     openSeaUrl,
@@ -31,7 +30,6 @@ function AssetUrl() {
   } = useStepsStore();
   const [loading, setLoading] = useState<boolean>(false);
   const [urlError, setUrlError] = useState<boolean>(false);
-  const [success, setSuccess] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const fetchNftAsset = async () => {
     if (!openSeaUrl) {
@@ -40,12 +38,10 @@ function AssetUrl() {
     const url = normalizeURL(openSeaUrl);
     setError(false);
     setLoading(true);
-    const assetUrl = `extractDataFromNFTContract?openseaUrl=${url}`;
+    const assetUrl = `extractAssetFromNFTContract?openseaUrl=${url}`;
     try {
       const res = await api.get(assetUrl);
-      setAsset(res.asset);
-      setOwner(res.owner);
-      setSuccess(true);
+      setAsset(res);
     } catch (error) {
       analytics.sendEvent(EVENTS.fetchNftFailed);
       setError(true);
@@ -61,8 +57,8 @@ function AssetUrl() {
   };
 
   useEffect(() => {
-    setAllowNextStep(!!owner);
-  }, [owner, setAllowNextStep, urlError]);
+    setAllowNextStep(!!asset);
+  }, [asset, setAllowNextStep, urlError]);
 
   const isDisabled = !openSeaUrl || urlError;
   return (
@@ -88,7 +84,7 @@ function AssetUrl() {
             active={!isDisabled && !asset}
             disabled={isDisabled || !!asset}
           />
-          {success && <Success text="Successfully Fetched!" />}
+          {asset && <Success text="Successfully Fetched!" />}
           {error && <Error text="Invalid Asset Url" />}
         </div>
       </div>

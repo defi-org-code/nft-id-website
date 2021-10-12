@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../../../../components/Button";
 import Error from "../../Error";
 import Success from "../../Success";
@@ -10,6 +10,7 @@ import AssetAvatar from "../../AssetAvatar";
 import { EVENTS } from "../../../../../services/analytics/consts";
 import analytics from "../../../../../services/analytics";
 import { mobileWithoutMetamask } from "../../../../../utils/web3";
+import api from "../../../../../services/api";
 const Bounce = require("react-reveal/Bounce");
 
 const checkIfOwner = (account: string, owner: string) => {
@@ -21,8 +22,9 @@ const checkIfOwner = (account: string, owner: string) => {
 };
 
 function ConnectWallet() {
-  const { owner, setAllowNextStep } = useStepsStore();
+  const { owner, setAllowNextStep, openSeaUrl, setOwner } = useStepsStore();
   const { connect, account } = useWeb3();
+  const [isLoading, setIsLoading] = useState(false);
 
   const isOwner = checkIfOwner(account, owner);
   useEffect(() => {
@@ -32,25 +34,29 @@ function ConnectWallet() {
   useEffect(() => {
     if (account) {
       analytics.sendEvent(EVENTS.connectedSuccessfullyWallet);
+      getOwner(account);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [account]);
+
+  const getOwner = async (account: string) => {
+    try {
+      setIsLoading(true);
+      const url = `extractOwnerFromNFTContract?openseaUrl=${openSeaUrl}&ownerAddress=${account}`;
+      const response = await api.get(url);
+      setOwner(response);
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Bounce right>
       <div className="step wallet-connect">
         <AssetAvatar />
         <div className="step-content">
-          <div className="wallet-connect-owner">
-            <h4>NFT Owner:</h4>
-            <a
-              href={`https://etherscan.io/address/${owner}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <p className="overflow-text"> {owner}</p>{" "}
-              <img src={images.LinkImg} alt="link" />
-            </a>
-          </div>
           <Button
             onClick={analytics.sendEventAndRunFunc.bind(
               null,
@@ -69,9 +75,9 @@ function ConnectWallet() {
               </div>
             }
             active={true}
-            isLoading={false}
+            isLoading={isLoading}
           />
-          {account ? (
+          {owner ? (
             isOwner ? (
               <Success text="Successfully Connected!" />
             ) : (
