@@ -107,7 +107,7 @@ function Actions({ certificate, verifyAgain }: IProps) {
               active={showFetchingSignature}
               name={
                 <Typing>
-                  <p>Fetching siganture...</p>
+                  <p>Fetching signature...</p>
                 </Typing>
               }
               content={
@@ -132,7 +132,7 @@ function Actions({ certificate, verifyAgain }: IProps) {
             <Action
               name={
                 <Typing>
-                  <p>Verifiying siganture...</p>
+                  <p>Verifiying signature...</p>
                 </Typing>
               }
               active={showVerifyingSignature}
