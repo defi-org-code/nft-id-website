@@ -1,4 +1,5 @@
 export const EVENTS = {
+  clickOnNoMetamaskPopup: "NO_METAMASK_POPUP_CLICKED",
   homePageLoad: "HOME_PAGE_LOADED",
   verifyAssetFromHomePageButtonClick: "VERIFY_BUTTON_FROM_HOME_PAGE_CLICK",
   verifyPageLoaded: "VERIFY_PAGE_LOADED",

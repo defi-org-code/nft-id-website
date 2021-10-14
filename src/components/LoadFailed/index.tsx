@@ -1,12 +1,16 @@
-import { isMobile } from "react-device-detect";
 import images from "../../consts/images";
+import analytics from "../../services/analytics";
+import { EVENTS } from "../../services/analytics/consts";
 
 const DEEP_LINK = "https://metamask.app.link/dapp/mynft.fyi/";
 function LoadFailed() {
-  if (isMobile && !(window as any).ethereum) {
+  if (!(window as any).ethereum) {
     return (
-      <div className="load-failed">
-        <a href={DEEP_LINK}>
+      <div
+        className="load-failed"
+        onClick={() => analytics.sendEvent(EVENTS.clickOnNoMetamaskPopup)}
+      >
+        <a href={DEEP_LINK} target="_blank" rel="noreferrer">
           <div className="load-failed-content">
             <img
               src={images.loadFailedFrame}

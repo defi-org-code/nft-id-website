@@ -1,8 +1,9 @@
 import amplitude from "amplitude-js";
+import { isMobile } from "react-device-detect";
 
 class Analytics {
   isProd: boolean = true;
-
+  defaultProps = { isMobile, isBrowserWithWallet: !!(window as any).ethereum };
   init() {
     this.isProd = process.env.NODE_ENV !== "development";
     if (process.env.REACT_APP_AMPLITUDE && this.isProd) {
@@ -11,13 +12,10 @@ class Analytics {
     }
   }
 
-  sendEvent(event: string, data?: any) {
+  sendEvent(event: string, data?: object) {
+    const props = data ? { ...this.defaultProps, ...data } : this.defaultProps;
     if (this.isProd) {
-      if (!data) {
-        amplitude.getInstance().logEvent(event);
-      } else {
-        amplitude.getInstance().logEvent(event, data);
-      }
+      amplitude.getInstance().logEvent(event, props);
     } else {
       console.log({ event });
     }
