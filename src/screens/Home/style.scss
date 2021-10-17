@@ -1,3 +1,5 @@
+@import "./Partners/style.scss";
+
 .home {
   min-height: 100vh;
   position: relative;
@@ -30,10 +32,10 @@
     }
   }
   &-left {
-    padding-top: 70px;
+    padding-top: 0px;
     img {
       height: 192px;
-      margin-bottom: 60px;
+      margin-bottom: 50px;
     }
     h5 {
       font-weight: 400;
@@ -46,14 +48,14 @@
       font-weight: 700;
     }
     .button {
-      margin-top: 60px;
+      margin-top: 50px;
       &::after {
         width: 70%;
       }
     }
   }
   &-right {
-    width: 760px;
+    width: 690px;
     position: relative;
 
     margin-left: 70px;
@@ -69,7 +71,7 @@
     padding-top: 4.3vw;
     &-left {
       position: relative;
-      top: -50px;
+      top: -20px;
       width: auto;
 
       h5 {
@@ -96,7 +98,7 @@
     }
     &-right {
       margin-left: 5vw;
-      width: 47.6vw;
+      width: 43vw;
     }
   }
 }

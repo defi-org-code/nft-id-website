@@ -1,0 +1,38 @@
+.footer {
+  position: relative;
+  background: black;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  &-mynft {
+    height: 30px;
+    margin-bottom: 15px;
+  }
+  &-socials {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+    padding: 15px 10px;
+    a {
+      margin-right: 20px;
+      img {
+        width: 30px;
+        height: 30px;
+      }
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+  &-year {
+    padding: 0px 10px;
+    opacity: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+}

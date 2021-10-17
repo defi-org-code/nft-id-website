@@ -6,6 +6,7 @@ import Verify from "./screens/Verify";
 import { routes } from "./consts";
 import analytics from "./services/analytics";
 import Contest from "./screens/Contest";
+import Footer from "./components/Footer";
 analytics.init();
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
         <Route render={() => <Redirect to={routes.home} />} />
       </Switch>
+      <Footer />
     </div>
   );
 }

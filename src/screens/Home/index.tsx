@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { routes } from "../../consts";
 import analytics from "../../services/analytics";
 import { EVENTS } from "../../services/analytics/consts";
+import Partners from "./Partners";
 const Bounce = require("react-reveal/Bounce");
 
 function Home() {
@@ -43,6 +44,7 @@ function Home() {
           </div>
         </Bounce>
       </div>
+      <Partners />
     </div>
   );
 }

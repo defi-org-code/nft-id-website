@@ -31,7 +31,21 @@ import mobileCertificateFrame from "../assets/images/mobile/certificate-frame.pn
 import metamaskLogo from "../assets/images/metamask-logo.png";
 import loadFailedFrame from "../assets/images/load-failed-frame.png";
 import notVerified from "../assets/images/not-verified.png";
+import defi from "../assets/images/home/defi.png";
+import telegramIcon from "../assets/images/telegram-icon.svg";
+import twitterIcon from "../assets/images/twitter-icon.svg";
+import myNftFooter from "../assets/images/mynft-footer.svg";
+import moonstake from "../assets/images/home/moonstake.png";
+import orbs from "../assets/images/home/orbs.png";
+import binance from "../assets/images/home/binance.png";
+
 const images = {
+  moonstake,
+  orbs,
+  binance,
+  telegramIcon,
+  twitterIcon,
+  defi,
   ActiveStepImg,
   SuccessImg,
   AssetPlaceholder,
@@ -65,6 +79,7 @@ const images = {
   metamaskLogo,
   loadFailedFrame,
   notVerified,
+  myNftFooter,
 };
 
 export default images;
