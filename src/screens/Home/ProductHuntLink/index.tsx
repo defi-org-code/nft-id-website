@@ -14,7 +14,7 @@ function ProductHuntLink({ id = "" }: Props) {
       className="home-product-hunt"
     >
       <img
-        src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=318044&theme=light"
+        src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=318044&theme=dark"
         alt="MyNFT.fyi - Prove your on-chain ownership of your NFT profile picture | Product Hunt"
         style={{ width: "250px", height: "54px" }}
         width={250}
