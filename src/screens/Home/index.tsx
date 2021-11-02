@@ -6,6 +6,7 @@ import { routes } from "../../consts";
 import analytics from "../../services/analytics";
 import { EVENTS } from "../../services/analytics/consts";
 import Partners from "./Partners";
+import ProductHuntLink from "./ProductHuntLink";
 const Bounce = require("react-reveal/Bounce");
 
 function Home() {
@@ -17,13 +18,16 @@ function Home() {
 
   return (
     <div className="home">
+      <ProductHuntLink id="product-hunt-mobile" />
       <img src={images.homeBG} alt="background" className="home-bg" />
       <img src={images.logo} alt="logo" className="home-logo" />
       <div className="home-flex">
         <img src={images.title} alt="my nft" className="home-flex-mobile-img" />
+
         <Bounce left>
           <div className="home-left">
-            <img src={images.title} alt="my nft" />
+            <ProductHuntLink id="product-hunt-desktop" />
+            <img src={images.title} alt="my nft" className="home-left-img" />
             <h5>You own an NFT ?</h5>
             <h3>Prove it !</h3>
             <Button

@@ -5,6 +5,15 @@
   position: relative;
   padding-top: 70px;
   overflow-x: hidden;
+  #product-hunt-mobile {
+    display: none;
+  }
+  &-product-hunt {
+    position: absolute;
+    z-index: 999;
+    top: -132px;
+    left: 0px;
+  }
   &-logo {
     left: 70px;
     top: 20px;
@@ -33,7 +42,8 @@
   }
   &-left {
     padding-top: 0px;
-    img {
+    position: relative;
+    &-img {
       height: 192px;
       margin-bottom: 50px;
     }
@@ -69,9 +79,11 @@
 @media only screen and (max-width: 1600px) {
   .home {
     padding-top: 4.3vw;
+    &-product-hunt {
+      top: -7.5vw;
+    }
     &-left {
       position: relative;
-      top: -20px;
       width: auto;
 
       h5 {
@@ -81,7 +93,7 @@
       h3 {
         font-size: 2.9vw;
       }
-      img {
+      &-img {
         height: 12vw;
         margin-bottom: 3.6vw;
       }
@@ -109,9 +121,19 @@
   }
 }
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 850px) {
   .home {
-    padding-top: 50px;
+    padding-top: 80px;
+    position: relative;
+    #product-hunt-mobile {
+      display: block;
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      left: auto;
+      zoom: 0.7;
+    }
+
     &-logo {
       width: 30px;
       left: 15px;
